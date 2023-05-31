@@ -1,0 +1,116 @@
+<!-- display left side bar of the barber profile to barber admin -->
+
+<div class="card shadow pb-20">
+  <div class="text-center mt-5">
+    <!-- display user profile image -->
+    <img class="img-thumbnail rounded-circle profile-img card-img-top" [src]="barberDetail?.image_url" [alt]="barberDetail?.first_name"><br>
+    <h5 class="text-capitalize">{{barberDetail?.first_name}}  {{barberDetail?.last_name}}</h5>
+    <h6>{{barberDetail?.email}}</h6>
+  </div>
+
+  <div class="card-body">
+    <!-- display sidebar link list -->
+    <div class="mt-5 pl-1 pr-1">
+      <ul class="list-group list-group-flush">
+        
+        <li class="list-group-item">
+          <div class="d-flex bd-highlight">
+            <div class="w-100">
+              <i class="fa" aria-hidden="true">&#xf2ba;</i>
+              <span class="text-capitalize text-secondary ml-2">my profile</span>
+            </div>
+            <div class="flex-shrink-1">
+              <span class="badge badge-success rounded-circle">2</span>
+            </div>
+          </div>
+        </li>
+        
+        <li class="list-group-item">
+          <div class="d-flex bd-highlight">
+            <div class="w-100">
+                
+             <i class="fa fa-flask" aria-hidden="true"></i> 
+              <span class="text-capitalize text-secondary ml-2">activity</span>
+            </div>
+          </div>
+        </li>
+
+        <li class="list-group-item">
+          <div class="d-flex bd-highlight">
+            <div class="w-100">
+              <i class="fa" aria-hidden="true">&#xf086;</i>
+              <span class="text-capitalize text-secondary ml-2">messages</span>
+            </div>
+          </div>
+        </li>
+
+        <li class="list-group-item">
+          <div class="d-flex bd-highlight">
+            <div class="w-100">
+              <i class="fa" aria-hidden="true">&#xf080;</i>
+              <span class="text-capitalize text-secondary ml-2">sales</span>
+            </div>
+          </div>
+        </li>
+
+        <li class="list-group-item">
+          <div class="d-flex bd-highlight">
+            <div class="w-100">
+              <i class="fa" aria-hidden="true">&#xf073;</i>
+              <span class="text-capitalize text-secondary ml-2">events</span>
+            </div>
+          </div>
+        </li>
+
+        <li class="list-group-item">
+          <div class="d-flex bd-highlight">
+            <div class="w-100">
+              <i class="fa" aria-hidden="true">&#xf1cd;</i>
+              <span class="text-capitalize text-secondary ml-2">supports</span>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- display sidebar details link list -->
+    <div class="mt-5 pl-1 pr-1">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <div class="d-flex bd-highlight">
+            <div class="w-100">
+              <p class="text-capitalize h6">member profit<br><span class="span_text">Average weekly profit</span></p>
+            </div>
+            <div class="flex-shrink-1">
+              <p class="text-primary font-weight-bold">+{{ barberDetail?.totalOrdersProfit | currency }}</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="list-group-item">
+          <div class="d-flex bd-highlight">
+            <div class="w-100">
+              <p class="text-capitalize h6">orders<br><span class="span_text">Weekly Customers Orders</span></p>
+            </div>
+            <div class="flex-shrink-1">
+              <p class="text-danger font-weight-bold">+{{ barberDetail?.totalOrders }}</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="list-group-item">
+          <div class="d-flex bd-highlight">
+            <div class="w-100">
+              <p class="text-capitalize h6">issue reports<br><span class="span_text"> System bugs and issues</span></p>
+            </div>
+            <div class="flex-shrink-1">
+              <p class="text-success font-weight-bold">-27,49%</p>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</div>

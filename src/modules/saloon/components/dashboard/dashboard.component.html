@@ -1,0 +1,32 @@
+<div class="container-fluid" >
+  <!-- display page title -->
+  <div class="row">
+    <div class="col">
+      <p class="text-capitalize h3 ml-4">{{pageTitle}}</p>
+    </div>
+    <div class="col-md-8 col-sm-8 col-xs-8" style="margin-left: -1%;">
+      <p class="datetex">Today: <span class="dd">{{ selectedDate | date:'MMM dd' }}</span> 
+        <!--  <i class="fa dropicon">&#xf078;</i> -->
+        <my-date-picker class="dropicon" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)"></my-date-picker>
+
+       </p>
+   </div>
+  </div> 
+  
+  <!-- End of Row Class---->
+
+  <!-- display progress screen -->
+  <app-progress></app-progress>
+
+  <!-- display saloon short information -->
+  <app-saloon-short-detail [saloonId]="saloonId"></app-saloon-short-detail>
+
+  <!-- display cut details -->
+  <app-cut-detail [saloonId]="saloonId"></app-cut-detail>
+
+  <!-- display cut history -->
+  <app-cut-history [saloonId]="saloonId"></app-cut-history>
+
+  <!-- display forumn information -->
+  <app-barber-join-discussion></app-barber-join-discussion>
+</div>

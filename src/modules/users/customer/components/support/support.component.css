@@ -1,0 +1,20 @@
+.submit_ticket{
+    color:#4c4f56;
+    font-size:14px;
+    font-weight:700;
+}
+.need_extra{
+    color:#3b3a40;
+    font-size:12px;
+    font-weight:bold;
+}
+.text_descr{
+    font-size:10px;
+    font-weight: 500;
+    color:#4c4f56;
+}
+label{
+    color:#97979a;
+    font-size:10px;
+    font-weight:bold;
+}

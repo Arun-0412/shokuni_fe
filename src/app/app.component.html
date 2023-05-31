@@ -1,0 +1,99 @@
+<!-- Display loader -->
+<div class="loading" *ngIf="objLoaderStatus">Loading&#8230;</div>
+
+<!-- display notification -->
+<ng-snotify></ng-snotify>
+
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar" class="bg-dark" [ngClass]="sidebarStatus ? 'active' : ''" *ngIf="checkLogin()">
+        <ul class="list-unstyled components">
+            <li class="toggle_left" (mouseover)="toggleSidebar()">
+                <a>
+                    <i class="fa fa-align-left" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            <li>
+                <a  class="text-capitalize title_name">
+                    <i class="fa fa-ellipsis-h ListIcons" aria-hidden="true"></i>
+                    <span>General</span>
+                </a>
+            </li>
+            <li *ngFor="let link of getSidebarLinks(); let i = index">
+                <!-- check if link is type of nested -->
+                <a *ngIf="link.nested" href="#nestedLink{{i}}"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-capitalize title_name">
+                <!--     <i class="fa {{link.icon}}" aria-hidden="true"></i> -->
+                <img class="svg ListIcons active" src="{{link.icon}}" alt="">
+                    <span>{{link.title}}</span>
+                </a>
+                <!-- display nested links if exted -->
+                <ul *ngIf="link.nested" class="collapse list-unstyled title_name" id="nestedLink{{i}}">
+                    <li *ngFor="let nested of link.nestedLinks">
+                        <a [routerLink]="nested.link" class="text-capitalize title_name"><span>{{nested.title}}</span></a>
+                    </li>
+                </ul>
+
+                <!-- else display normal link -->
+                <a *ngIf="!link.nested" [routerLink]="link.link" class="text-capitalize title_name">
+                    <!-- <i class="fa {{link.icon}}" aria-hidden="true"></i> -->
+                     <img class="svg ListIcons" src="{{link.icon}}" alt="">
+                    <span>{{link.title}}</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+    <!-- Page Content  -->
+    <div id="content">
+
+        <!-- top navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light pt-0 pb-0" *ngIf="checkLogin()">
+            <div class="container-fluid">
+                <a class="navbar-brand text-bold text-lowercase text-size-3 color-shokuni" [routerLink]="getDefaultpage()">{{siteTitle}}</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item mt-2 mr-3 h3">
+                            <a class="nav-link" [routerLink]="getDefaultpage()">
+                                <i class="fa fa-list-alt color-fa-gradient" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown profile_img">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img [src]="getUserAvatar()" class="avatar">
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="header bg-dark">
+                                    <div class="row">
+                                        <div class="col col-md-4">
+                                           <img [src]="getUserAvatar()" class="avatar img_src">
+                                        </div>
+                                        <div class="col col-md-7">
+                                            <p class="p_name">{{ getUserInfo ('name') }}<span class="span_email">{{ getUserInfo ('email') }}</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="dropdown-item" routerLink="/profile"><i class="fa fa-vcard-o">&#xf2bc;</i> Edit Profile</a>
+                                <a class="dropdown-item" routerLink="/support"><i class="fa">&#xf06a;</i> FAQ</a>
+                                <span class="btn btn-transparent text-capitalize ml-4" (click)="logoutUser()"><small>Logout</small></span>
+                                <!-- <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a> -->
+                              </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- display sidebar navigation on xs screen size -->
+      <!--   <button type="button" class="btn btn-dark d-block d-sm-none" (click)="toggleSidebar()">
+            <i class="fa fa-align-left" aria-hidden="true"></i>
+        </button> -->
+        
+        <!-- display components and view -->
+        <router-outlet></router-outlet>
+    </div>
+</div>

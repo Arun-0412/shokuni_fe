@@ -1,0 +1,152 @@
+<div class="container-fluid" >
+  <!-- display page title -->
+  <div class="row">
+    <div class="col">
+      <p class="text-capitalize h3 ml-3">{{pageTitle}}</p>
+    </div>
+  </div>
+
+
+  <div class="row bg-white mt-3 ml-3 mr-3 shadow border-bottom">
+    <div class="col">
+      <p class="text-capitalize h5 ml-3 mt-4 mb-4 text-secondary">{{subTitle}}</p>
+    </div>
+    <div class="col text-right mt-3">
+        <div class="form-inline no-flex">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" (keyup)="getUsers(1, $event.target.value)">
+        </div>
+    </div>
+  </div>
+
+  <div class="row bg-white ml-3 mr-3 shadow">
+    <div class="col">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col" class="text-capitalize font-weight-bold text-muted"></th>
+              <th scope="col" class="text-capitalize font-weight-bold text-muted">user</th>
+              <th scope="col" class="text-capitalize font-weight-bold text-muted">cuts</th>
+              <th scope="col" class="text-capitalize font-weight-bold text-muted">last visit</th>
+              <th scope="col" class="text-capitalize font-weight-bold text-secondary"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of userList;">
+              <td scope="row" class="text-capitalize font-weight-normal text-secondary">
+                <input type="checkbox" />
+              </td>
+              <td scope="row" class="text-capitalize font-weight-normal text-secondary">
+                <div class="media">
+                    <img [alt]="user?.name" [src]="user?.image_url" class="avatar rounded-circle" />
+                  <div class="media-body anchor_name">
+                    <a routerLink="/admin/user/{{ user?.id }}/dashboard" class="mt-0 text-capitalize name">{{ user?.name }}</a>
+                    <p>{{ user?.role }}</p>
+                  </div>
+                </div>
+              </td>
+              <td scope="row" class="text-capitalize font-weight-normal text-secondary">
+                {{ user?.cuts_count }}
+              </td>
+              <td scope="row" class="text-capitalize font-weight-normal text-secondary">
+                {{ (user?.last_active * 1000) || null | date:'dd/MM/y' }}
+              </td>
+              <td scope="row">
+                <div class="dropdown">
+                    <span class="text-dark font-weight-bold">...</span>
+                    <div class="dropdown-content drop_icon">
+                      <p class="text-capitalize hover-dark pointer pl-4 pr-2 pt-3 pb-3" *ngIf="user?.role !== 'admin'" (click)="selectUser (user)" data-toggle="modal" data-target="#suspendUserModalCenter">suspend user</p>
+                      <p class="text-capitalize hover-dark pointer pl-4 pr-2 pt-3 pb-3" (click)="selectUser (user);setSelecteduserEmail();" data-toggle="modal" data-target="#resetEmailModalCenter">reset email</p>
+                      <p class="text-capitalize hover-dark pointer pl-4 pr-2 pt-3 pb-3" (click)="selectUser (user)" data-toggle="modal" data-target="#resetPasswordModalCenter">reset password</p>
+                    </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- display users list pagination -->
+  <div class="row bg-white ml-3 mr-3 mb-3 shadow" *ngIf="totalItems">
+    <div class="col">
+      <app-pagination [totalItems]="totalItems" [currentPage]="currentPage" (childEvent)="getUsers ($event)"></app-pagination>
+    </div>
+  </div>  <!-- display users list pagination -->
+</div>
+
+
+<!-- Modal: Display user password reset form -->
+<div class="modal fade" id="resetPasswordModalCenter" tabindex="-1" role="dialog" aria-labelledby="resetPasswordModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-capitalize" id="exampleModalLongTitle">{{ selectedUser?.name }}: change password </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>      
+      <form [formGroup]="resetPasswordForm" novalidate>
+        <div class="modal-body">
+          <div class="form-group">
+              <input type="text" class="form-control no-border" appTrimInput required formControlName="password" autocomplete="off" maxlength="20" placeholder="Password">
+              <show-errors [control]="resetPasswordForm.controls.password"></show-errors>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-transparent" data-dismiss="modal">Close</button>
+          <button type="button" [disabled]="!resetPasswordForm.valid" data-dismiss="modal" (click)="submitChangeUserPassword (resetPasswordForm)" class="btn btn-shokuni btn-round pl-4 pr-4 pt-2 pb-2">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Display user email reset form -->
+<div class="modal fade" id="resetEmailModalCenter" tabindex="-1" role="dialog" aria-labelledby="resetEmailModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-capitalize" id="exampleModalLongTitle">{{ selectedUser?.name }}: change email </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>      
+      <form [formGroup]="resetEmailForm" novalidate>
+        <div class="modal-body">
+          <div class="form-group">
+              <input type="text" class="form-control no-side-border" appTrimInput required formControlName="email" maxlength="255" autocomplete="off" placeholder="email">
+              <show-errors [control]="resetEmailForm.controls.email"></show-errors>
+          </div>
+        </div>          
+        <div class="modal-footer">
+          <button type="button" class="btn btn-transparent" data-dismiss="modal">Close</button>
+          <button type="button" data-dismiss="modal" [disabled]="!resetEmailForm.valid" (click)="submitChangeUserEmail (resetEmailForm)" class="btn btn-shokuni btn-round pl-4 pr-4 pt-2 pb-2">Save</button>
+        </div>
+      </form>      
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Display user suspend -->
+<div class="modal fade" id="suspendUserModalCenter" tabindex="-1" role="dialog" aria-labelledby="suspendUserModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-capitalize" id="exampleModalLongTitle">{{ selectedUser?.name }}: change email </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+          <div class="modal-body">
+            Do you really want to suspend/delete user?
+          </div>          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-transparent" data-dismiss="modal">No</button>
+            <button type="button" (click)="suspendUser ()" data-dismiss="modal" class="btn btn-shokuni btn-round pl-4 pr-4 pt-2 pb-2">Yes</button>
+          </div>
+      </div>
+    </div>
+  </div>

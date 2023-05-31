@@ -1,0 +1,47 @@
+<!-- display progress steps-->
+<div class="row m-3 shadow">
+  <div class="col bg-white p-4">
+    <p class="text-capitalize mt-4 mb-4">{{pageTitle}}</p>
+
+    <!-- display progress circle -->
+    <div class="line"></div>
+
+      <div class="row">
+        <div class="col">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" class="text-capitalize font-weight-bold text-sm text-muted">customer</th>
+                  <th scope="col" class="text-capitalize font-weight-bold text-sm text-muted">time</th>
+                  <th scope="col" class="text-capitalize font-weight-bold text-sm text-muted">date</th>
+                  <th scope="col" class="text-capitalize font-weight-bold text-sm text-muted">total</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="cutHistory">
+                <tr *ngFor="let cut of cutHistory;">
+                  <td scope="row" class="text-capitalize font-weight-bold text-sm text-muted">
+                    <div class="media">
+                      <img class="mr-3 avatar rounded-circle" [src]="cut?.image_url" [alt]="cut?.customer_name">
+                      <div class="media-body">
+                        <a [routerLink]="getCustomerDashboard(cut?.customer_id)" class="mt-3 text-capitalize font-weight-bold text-sm text-dark cust_name">{{ cut?.customer_name }}</a>
+                      </div>
+                    </div>
+                  </td>
+                  <td scope="row" class="text-capitalize font-weight-normal text-sm text-muted">
+                    {{ cut?.created_at * 1000 | date: 'hh:mm' }}<sub>{{ lowerCase (cut?.created_at * 1000 | date: 'a') }}</sub>
+                  </td>
+                  <td scope="row" class="text-capitalize font-weight-normal text-sm text-muted">
+                      {{ cut?.created_at * 1000 | date: 'dd/MM/yyyy' }}
+                  </td>
+                  <td scope="row" class="text-capitalize font-weight-normal text-sm text-muted">
+                      {{ cut?.payment?.final_amount | currency: 'GBP' }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

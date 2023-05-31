@@ -1,0 +1,81 @@
+<div class="container-fluid">
+  <!-- display page title -->
+  <div class="row">
+    <div class="col">
+      <p class="text-capitalize h3 ml-4">{{pageTitle}}</p>
+    </div>
+  </div>
+
+  <div class="row bg-white mb-5 ml-4 mr-5">
+    <div class="col-md-12">
+      	<!-- <p class="text-capitalize h5 ml-5 mt-5 mb-4 sub_title">{{subTitle}}</p> -->
+      	<!-- seperator or line -->
+      	  
+      	<!-- change-password form -->
+      	<div class="col-md-12">
+      		<p class="text-capitalize h5 ml-5 mt-5 mb-4 sub_title">For Card</p>
+      		<div class="line ml-5 mr-5"></div>  
+	    	<form class="row ml-4 mr-4 mb-5 mt-5" [formGroup]="cardForm" novalidate>
+				<div class="col-md-6">
+					<div class="form-group">
+					  <label class="h6 required">Ammount</label>
+					  <input type="text" class="form-control no-side-border" appTrimInput required formControlName="ammount" value="{{discount_result[0].discount_price}}" maxlength="20" autocomplete="off">
+					  <show-errors [control]="cardForm.controls.name"></show-errors>
+					</div>
+				</div>
+				<input type="hidden" formControlName="type" value="card" required>
+				<div class="col-md-6">
+					<div class="form-group">
+					  <label class="h6 required">Type</label>
+					  <select class="form-control no-side-border" appTrimInput required formControlName="type" maxlength="20" autocomplete="off" value="{{discount_result[0].discount_type}}" [(ngModel)]="selected">
+					  	<option value="percentage">Persentage</option>
+					  	<option value="normal">Normal</option>
+					  </select>
+					  <show-errors [control]="cardForm.controls.name"></show-errors>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<small><span class="required"></span> indicates required</small>
+					<div class="text-left mt-2">
+					  <button (click)="submitCardSaloon(cardForm)" class="btn btn-shokuni text-capitalize mr-3">save</button>
+					  <button type="reset" class="btn btn-transparent text-capitalize">cancel</button>
+					</div>
+				</div>
+			</form>
+		</div>	
+
+		<div class="col-md-12">
+			<p class="text-capitalize h5 ml-5 mt-5 mb-4 sub_title">For Cash</p>
+			<div class="line ml-5 mr-5"></div>  
+			<form class="row ml-4 mr-4 mb-5 mt-5" [formGroup]="cashForm" novalidate>
+				<div class="col-md-6">
+					<div class="form-group">
+					  <label class="h6 required">Ammount</label>
+					  <input type="text" class="form-control no-side-border" appTrimInput required formControlName="ammount" value="{{discount_result[1].discount_price}}" maxlength="20" autocomplete="off">
+					  <show-errors [control]="cashForm.controls.name"></show-errors>
+					</div>
+				</div>
+				<input type="hidden" formControlName="type" value="cash" required>
+				<div class="col-md-6">
+					<div class="form-group">
+					  <label class="h6 required">Type</label>
+					  <select class="form-control no-side-border" appTrimInput required formControlName="type" maxlength="20" autocomplete="off" value="{{discount_result[1].discount_type}}" [(ngModel)]="selected">
+					  	<option value="percentage">Persentage</option>
+					  	<option value="normal">Normal</option>
+					  </select>
+					  <show-errors [control]="cashForm.controls.name"></show-errors>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<small><span class="required"></span> indicates required</small>
+					<div class="text-left mt-2">
+					  <button (click)="submitCashSaloon(cashForm)" class="btn btn-shokuni text-capitalize mr-3">save</button>
+					  <button type="reset" class="btn btn-transparent text-capitalize">cancel</button>
+					</div>
+				</div>
+			</form>	
+	    </div>
+
+    </div>
+  </div>
+</div>

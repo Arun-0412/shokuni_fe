@@ -1,0 +1,192 @@
+<div class="container-fluid">
+  <!-- display page title -->
+  <div class="row">
+    <div class="col">
+      <p class="text-capitalize h3 ml-4">{{pageTitle}}</p>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col bg-white ml-5 mb-5 mr-5 mt-4 pb-1">
+      <div class="row">
+        <div class="col">
+          <p class="text-capitalize h5 ml-3 mt-4 mb-4">{{subTitle}}</p>
+        </div>
+        <div class="col text-right mt-3">
+          <span class="btn text-capitalize btn-transpert" data-toggle="modal" data-target="#addService">add
+            product</span>
+        </div>
+      </div>
+
+      <!-- seperator or line -->
+      <div class="line"></div>
+
+
+      <!-- <Design table to display barbers information under the saloon -->
+      <table class="table text-center">
+        <thead>
+          <tr>
+            <th scope="col" class="text-capitalize">product</th>
+            <th scope="col" class="text-capitalize">price</th>
+            <th scope="col" class="text-capitalize">type</th>
+            <th scope="col" class="text-capitalize">average time</th>
+            <th scope="col" class="text-capitalize"></th>
+            <!-- <th scope="col" class="text-capitalize">sales</th> -->
+          </tr>
+        </thead>
+        <tbody *ngIf="serviceList">
+          <tr *ngFor="let service of serviceList;">
+            <td class="service_name">{{ service.name }}</td>
+            <td>{{ service.amount | currency:'GBP' }}</td>
+            <td class="text-capitalize">{{ service.service_type }}</td>
+            <td>{{ service.time }}<small>min</small></td>
+            <td class="font-weight-bold cursor-pointer" (click)="selectService(service)" data-toggle="modal"
+              data-target="#editService">...</td>
+            <!-- <td>40</td> -->
+          </tr>
+        </tbody>
+      </table>
+      <!--End of table to display barber list---->
+
+      <!-- seperator or line -->
+      <div class="line"></div>
+
+      <!-- display barbers list pagination -->
+      <div class="row mt-5" *ngIf="totalItems">
+        <div class="col">
+          <!--Pagination -->
+          <app-pagination [totalItems]="totalItems" [currentPage]="currentPage"
+            (childEvent)="getSaloonServices ($event)"></app-pagination>
+        </div>
+      </div> <!-- display barbers list pagination -->
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Invite barber Modal -->
+<div class="modal fade" id="addService" tabindex="-1" role="dialog" aria-labelledby="addServiceLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-capitalize" id="addServiceLabel">add product</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="serviceForm" novalidate>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="h6 text-capitalize">product name:</label>
+            <input type="text" class="form-control" appTrimInput required formControlName="name" maxlength="255"
+              autocomplete="off" />
+            <show-errors [control]="serviceForm.controls.name"></show-errors>
+          </div>
+          <div class="form-group">
+            <label class="h6 text-capitalize">type:</label>
+            <select class="form-control text-capitalize" formControlName="service_type">
+              <option value="extra" class="text-capitalize" [selected]="true">extras</option>
+              <option value="main" class="text-capitalize">main</option>
+            </select>
+            <show-errors [control]="serviceForm.controls.type"></show-errors>
+          </div>
+          <div class="form-group">
+            <label class="h6 text-capitalize">cost:</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend bg-white">
+                <div class="input-group-text">&#xa3;</div>
+              </div>
+              <input type="number" class="form-control" appTrimInput required formControlName="amount" maxlength="255"
+                autocomplete="off" />
+            </div>
+            <show-errors [control]="serviceForm.controls.amount"></show-errors>
+          </div>
+          <div class="form-group">
+            <label class="h6 text-capitalize">time (minutes):</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend bg-white">
+                <div class="input-group-text">
+                  <i class="fa fa-play-circle-o" aria-hidden="true"></i>
+                </div>
+              </div>
+              <input type="text" class="form-control" appTrimInput appNumberOnly required formControlName="time"
+                maxlength="255" autocomplete="off" />
+            </div>
+            <show-errors [control]="serviceForm.controls.time"></show-errors>
+          </div>
+        </div>
+        <div class="modal-footer text-left">
+          <button type="button" [disabled]="!serviceForm.valid" class="btn btn-shokuni text-capitalize"
+            (click)="submitProductForm (serviceForm)" data-dismiss="modal">save</button>
+          <button type="button" class="btn btn-transpert text-capitalize" data-dismiss="modal">cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- modal to update service information -->
+<div class="modal fade" id="editService" tabindex="-1" role="dialog" aria-labelledby="editServiceLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-capitalize" id="editServiceLabel">Edit product</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="editServiceForm" novalidate>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="h6 text-capitalize">product name:</label>
+            <input type="text" class="form-control" appTrimInput required formControlName="name" maxlength="255"
+              autocomplete="off" />
+            <show-errors [control]="editServiceForm.controls.name"></show-errors>
+          </div>
+          <div class="form-group">
+            <label class="h6 text-capitalize">type:</label>
+            <select class="form-control text-capitalize" formControlName="service_type">
+              <option value="extra" class="text-capitalize" [selected]="true">extras</option>
+              <option value="main" class="text-capitalize">main</option>
+            </select>
+            <show-errors [control]="editServiceForm.controls.type"></show-errors>
+          </div>
+          <div class="form-group">
+            <label class="h6 text-capitalize">cost:</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend bg-white">
+                <div class="input-group-text">&#xa3;</div>
+              </div>
+              <input type="text" class="form-control" appTrimInput appNumberOnly required formControlName="amount"
+                maxlength="255" autocomplete="off" />
+            </div>
+            <show-errors [control]="editServiceForm.controls.amount"></show-errors>
+          </div>
+          <div class="form-group">
+            <label class="h6 text-capitalize">time (minutes):</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend bg-white">
+                <div class="input-group-text">
+                  <i class="fa fa-play-circle-o" aria-hidden="true"></i>
+                </div>
+              </div>
+              <input type="text" class="form-control" appTrimInput appNumberOnly required formControlName="time"
+                maxlength="255" autocomplete="off" />
+            </div>
+            <show-errors [control]="editServiceForm.controls.time"></show-errors>
+          </div>
+        </div>
+        <div class="modal-footer text-left">
+          <button type="button" [disabled]="!editServiceForm.valid" class="btn btn-shokuni text-capitalize"
+            (click)="submitEditProductForm (editServiceForm)" data-dismiss="modal">save</button>
+          <button type="button" class="btn btn-transpert text-capitalize" data-dismiss="modal">cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

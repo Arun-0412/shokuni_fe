@@ -1,0 +1,343 @@
+.p_tag{
+    float:left;
+    /* padding-left: 10px; */
+    color:rgb(170,170,170);
+    font-weight:700;
+}
+.serch_inpt{
+    float:right;
+     margin-top: 10px; 
+     padding-right: 5px;
+     margin-right: 5px;
+   /*  border:none; */
+}
+/* Search Buttons Classes */
+
+
+.img_resp{
+  width:35px;
+  height:35px;
+  border-radius:50px;
+}
+
+.required::after {
+  color: #fff;
+  font-size: none;
+  content: '';
+}
+.aster{
+    color:#c3777b;
+    padding-left:5px;
+    
+}
+.card_listt{
+   /*  width:79%;
+    margin:0 auto; */
+    border:none;
+    background:#fff;
+    height: 121px !important;
+}
+.card_list{
+   /*  width:79%;
+   margin:0 auto; */
+   border:none;
+   width: 99%;
+   background:#fff;
+
+}
+.save_btn{
+    background-color: #132149;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 10px;
+    width: 63px;
+    margin: 10px;
+    border: none !important;
+    height: 29px;
+    font-weight: 400;
+}
+.p_tag{
+    margin: 15px;
+    font-size: 12px;
+    color: #565962;
+    font-weight: bold;
+}
+
+.h4_tag{
+  /*  text-align: left; */
+       margin-left: 3px;
+       font-weight: bold;
+       font-size: 22px;
+       margin-top: -30px;
+     padding-top: 12px;
+     font-family:odudo;
+   
+ }
+.col_pss{
+    color:#656669;
+    font-size:9px;
+    margin-left: 16px;
+}
+.cancl_butn{
+    background: #fff !important;
+    border: 0.1px solid #c2c2c2 !important;
+    width: 63px;
+    height: 27px;
+    margin: -3px;
+    font-weight: 400;
+    font-size: 10px;
+    border-radius: 4px;
+}
+.input_box{
+  height: 22px;
+  margin-left: 16px;
+  width: 38%;
+}
+.inpt_bx{
+    width:60% !important;
+    height:28px;
+    border:0.9px solid #f1f2f5;
+    font-size: 10px;
+    border-radius: 2px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #132149;
+  border-color: #132149;
+}
+.upload_btn  input[type=file] {
+    background-color: #132149;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 10px;
+    width: 30px;
+    margin: 0px;
+    border: none !important;
+     height: 25px;
+    font-weight: 400;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    /* outline: none;   
+    cursor: inherit;
+    display: block; */
+}
+
+
+.close_btn{
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  font-size: 10px;
+  width: 46px;
+  /* margin: 10px; */
+ /*  border: none !important; */
+  height: 29px;
+  font-weight: 400;
+}
+.modaldelte_btn{
+  background:#bf6d71;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 10px;
+  width: 76px;
+  /* margin: 10px; */
+  border: none !important;
+  height: 29px;
+  font-weight: 400;
+
+}
+.dropbtn {
+  /* background-color: #3498DB; */
+ /*  color: white;
+  padding: 16px;
+  font-size: 16px; */
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+ /*  background-color: #2980B9; */
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.pro_bar{
+  width: 75% !important;
+  margin: 0 auto !important;
+  height: 5px !important;
+  margin-bottom: 20px !important;
+  /* background:#bf6d71 !important; */
+}
+.prog_bar{
+  background-color:#bf6d71 !important;
+  width:80%;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+.pagination>li>a, .pagination>li>span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #337ab7;
+  /* text-decoration: none; */
+  /* background-color: #fff; */
+  border: 0px solid #ddd; 
+}
+.page-link {
+  background-color: transparent !important;
+}
+.row_revenue{
+  padding: 37px 0 5px 25px;
+}
+.total_revenue{
+  color:rgb(104, 103, 116);
+  font-size:11px;
+  font-weight:bold;
+}
+.total_amnt{
+  color:#132149;
+  font-weight: bolder;
+  padding-left: 55px;
+}
+.to_date{
+  color:#cfd0d6;
+  font-size:9px;
+}
+.row_cardrevenue{
+  padding: 23px 5px 5px 26px;
+}
+.card_revenue{
+  color:rgb(104, 103, 116);
+  font-size:12px;
+  font-weight:bold;
+}
+.span_todate{
+  color:#cfd0d6;
+  font-size:9px;
+}
+.money{
+  color:#132149;
+  font-weight: bolder;
+  padding-left:76px;
+}
+.progress_total{
+  font-size:9px;
+  color:#d4d5da;
+  margin-left: 43px;
+  margin-top: -15px;
+}
+.percent{
+  font-size:9px;
+  float: right;
+  margin-right: 40px;
+  margin-top:-16px;
+  color:#d4d5da;
+}
+.euwo_money{
+  color:#132149;
+  font-weight: bolder;
+  padding-left: 55px;
+}
+.fees_card{
+  color:rgb(104, 103, 116);
+  font-size:11px;
+  font-weight:bold;
+}
+.upto_date{
+  color:#cfd0d6;
+  font-size:9px;
+}
+.p_euro{
+  color:#132149;
+  font-weight: bolder;
+  padding-left: 55px;
+}
+.p_progress_total{
+  font-size:9px;
+  color:#d4d5da;
+  margin-left: 43px;
+  margin-top: -15px;
+}
+.p_progress_percent{
+  font-size:9px;
+  float: right;
+  margin-right: 40px
+  ;margin-top:-16px;
+  color:#d4d5da;
+}
+.barber_item{
+  color:#8f9bbb;
+  font-size:9px;
+  font-weight:bold;
+  margin: 19px 0px 9px 0px;
+  padding-left: 43px;
+}
+.barber_all_items{
+  color:#8f9bbb;
+  font-size:9px;
+  font-weight:bold;
+  margin: 19px 0px 9px 0px;
+}
+.p_entries_name{
+  color:#7b7a86;
+  font-size:10px;
+  font-weight:bolder;
+  margin-left: 14px;
+}
+.entries_list_names{
+  color:#b2b2bc;
+  font-weight:bold;
+  font-size:11px;
+  padding-top: 9px;
+}
+.span_items{
+  font-size:7px;
+  color:#b2b2bc;
+}
+.padding_row{
+  padding-left:66px;
+}
+.payment_list{
+  color:#8f9bbb;font-size:9px;font-weight:bold;
+}
+.row_padding_list{
+  padding: 6px 0px 11px 66px;
+}
+.payment_col_list{
+  color:#807f8a;font-size:10px;font-weight:bold;
+}
+.payments_col_lists{
+  color:#b0b0bc;font-size:10px;font-weight:900;
+}
+.margin_right{
+  margin-right:13px;
+}
+.payment_text_desc{
+  color:#58585d;font-size:9px;font-weight:bold;margin-left:16px;
+}
+.input_padding{
+  padding-left:5px;
+}

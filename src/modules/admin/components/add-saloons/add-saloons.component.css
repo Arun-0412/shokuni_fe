@@ -1,0 +1,15 @@
+.sub_title{
+    color:#565962;
+    font-size:14px;
+    font-weight:bold
+}
+label{
+    color:#6c6d70;
+    font-size:10px;
+    font-weight:500;
+}
+.required::after {
+    color: #EF615F;
+    font-size: 11px;
+    content: ' *';
+}

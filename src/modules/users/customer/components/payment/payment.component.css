@@ -1,0 +1,35 @@
+.line {
+  height: 1px;
+  border-bottom: 1px solid #ddd;
+}
+
+.btn-shokuni {
+  background-color: #15234A;
+  color: #FFF;
+}
+
+.btn-transparent {
+  background-color: #FFF;
+  border-color: #ddd;
+}
+
+.required::after {
+  color: #EF615F;
+  font-size: 11px; 
+  content: ' *';
+}
+.title_name{
+  color:#565962;
+  font-size:16px;
+  font-weight:700;
+}
+.payment_text{
+color:#8e8d90;
+font-size:11px;
+font-weight:500;
+}
+label{
+  font-size:10px;
+  color:#535458;
+  font-weight:600;
+}

@@ -1,0 +1,114 @@
+<!-- dislay salon cut detail short details -->
+<div class="row shadow m-3 bg-white">
+  <div class="col">
+    <div class="row p-4">
+      <div class="col">
+        <h6 class="text-dark text-capitalize">Average Cut Time</h6>
+        <p class="text-black-50 text-capitalize">Time Spent On Cuts</p>
+      </div>
+      <div class="col">
+        <h5 class="text-danger font-weight-bold mt-3">{{ dashboard?.avg_cut_in_sec | secondsToMinuits }}<sub>m</sub></h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="row p-4">
+      <div class="col">
+        <h6 class="text-dark text-capitalize">Cuts</h6>
+        <p class="text-black-50 text-capitalize">Total Number of Cuts</p>
+      </div>
+      <div class="col">
+        <h5 class="text-danger font-weight-bold mt-3">{{ dashboard?.total_number_of_cuts }}</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="row p-4">
+      <div class="col">
+        <h6 class="text-dark text-capitalize">Total revenue</h6>
+        <p class="text-black-50 text-capitalize">All Customs Value</p>
+      </div>
+      <div class="col">
+        <h5 class="text-danger font-weight-bold mt-3">{{ dashboard?.total_profit_made | currency:'GBP' }}</h5>
+      </div>
+    </div>
+  </div>    
+</div>
+
+<!-- display barber of the saloon having highest performance-->
+<div class="row shadow m-3">
+    <div class="col bg-white shadow p-4">
+      <div class="h5 text-capitalize font-weight-normal text-dark cut_break">cut breakdown</div>
+
+      <div class="row align-items-end" *ngIf="breakDown">
+        <div *ngFor="let break of breakDown" class="col bg-primary mr-1" [style.height.px]="calculateBreakDownPercentage(break?.count)"></div>
+      </div>
+      <div class="row text-center">
+        <div *ngFor="let break of breakDown" class="col">{{ convertTimeIntoGMT (break.time) }}</div>
+      </div>
+    </div>
+
+    <!-- top barber revenue -->
+    <div class="col bg-white shadow p-4 ml-3">
+      <div class="h5 text-capitalize font-weight-normal text-dark cut_break">top barber revenue</div>
+      <div class="row p-4">
+        <div class="col">
+          <div class="media">
+            <img class="mr-3 avatar rounded-circle" [src]="dashboard?.top_barber_revenue?.image_url" [alt]="dashboard?.top_barber_revenue?.name">
+            <div class="media-body">
+              <div class="mt-2 mr-3 text-medium font-weight-normal text-dark barber_name">{{ dashboard?.top_barber_revenue?.name }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="col text-right">
+          <div class="text-danger font-weight-bold text-medium">{{ dashboard?.top_barber_revenue?.amt | currency:'GBP' }}</div>
+          <div class="text-black-50 font-weight-light small">revenue</div>
+        </div>
+      </div>
+
+      <div class="row text-center border-top pt-4">
+        <div class="col border-right">
+          <div class="text-danger font-weight-bold text-medium text-center">{{ dashboard?.top_barber_revenue?.count }}</div>
+          <div class="text-black-50 font-weight-light small">cuts</div>
+        </div>
+        <div class="col">
+          <div class="text-danger font-weight-bold text-medium">{{ dashboard?.top_barber_revenue?.avg_time_in_sec | secondsToMinuits }}</div>
+          <div class="text-black-50 font-weight-light text-capitalize small">avg time</div>
+        </div>
+      </div>
+    </div>  <!---top barber revenue-->
+
+    <!-- highest cut count -->
+    <div class="col bg-white shadow p-4 ml-3">
+      <div class="h5 text-capitalize font-weight-normal text-dark cut_break">highest cut count</div>
+
+      <div class="row p-4">
+        <div class="col">
+          <div class="media">
+            <img class="mr-3 avatar rounded-circle" [src]="dashboard?.highest_cut_count?.image_url" [alt]="dashboard?.highest_cut_count?.name">
+            <div class="media-body">
+              <div class="mt-2 mr-3 text-medium font-weight-normal text-dark barber_name">{{ dashboard?.highest_cut_count?.name }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="col text-right">
+          <div class="text-danger font-weight-bold text-medium mr-1">{{ dashboard?.highest_cut_count?.count }}</div>
+          <div class="text-black-50 font-weight-light small">cuts</div>
+        </div>
+      </div>
+
+      <div class="row text-center border-top pt-4">
+        <div class="col border-right">
+          <div class="text-danger font-weight-bold text-medium">{{ dashboard?.highest_cut_count?.amt | currency:'GBP' }}</div>
+          <div class="text-black-50 font-weight-light text-capitalize small">revenue</div>
+        </div>
+        <div class="col">
+            <div class="text-danger font-weight-bold text-medium">{{ dashboard?.highest_cut_count?.avg_time_in_sec | secondsToMinuits }}</div>
+          <div class="text-black-50 font-weight-light small">avg time</div>
+        </div>
+      </div>
+      
+    </div>  <!---highest cut count-->
+</div>

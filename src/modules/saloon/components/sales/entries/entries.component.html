@@ -1,0 +1,52 @@
+<!-- order entries -->
+<div class="row ml-4 mb-3 mr-4">
+  <div class="col bg-white">
+    <p class="text-capitalize h5 ml-3 mt-4 mb-4">{{pageTitle}}</p>
+
+    <!-- seperator or line -->
+    <div class="line"></div>
+
+    <div class="col">
+
+      <!-- display Order Entries -->
+      <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" class="text-capitalize">barber</th>
+                <th scope="col" class="text-capitalize">products</th>
+                <th scope="col" class="text-capitalize">cut time</th>
+                <th scope="col" class="text-capitalize">payment</th>
+                <th scope="col" class="text-capitalize">time</th>
+                <th scope="col" class="text-capitalize">date</th>
+                <th scope="col" class="text-capitalize">total</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="barberEntries">
+              <tr *ngFor="let order of barberEntries">
+                  <td scope="row" class="text-capitalize">
+                  <div class="media">
+                    <img class="mr-3 avatar rounded-circle" [src]="order?.barber?.image_url" [alt]="order?.barber?.name">
+                    <div class="media-body">
+                      <span>{{order?.barber?.name}}</span>
+                    </div>
+                  </div>
+                </td>
+                <td scope="row" class="text-capitalize">{{ displayServiceName (order?.services) }}</td>
+                <td scope="row" class="text-capitalize">{{ order?.total_time | secondsToMinuits }}<small>min</small></td>
+                <td scope="row" class="text-capitalize">{{ order?.payment?.payment_mode }}</td>
+                <td scope="row" class="text-capitalize">{{ order?.created_at * 1000 | date:'hh:M a' }}</td>
+                <td scope="row" class="text-capitalize">{{ order?.created_at * 1000 | date:'dd/MM/yy' }}</td>
+                <td scope="row" class="text-capitalize">{{ order?.payment?.final_amount | currency:'GBP' }}</td>
+              </tr>
+            </tbody>
+      </table>
+
+      <!-- display barbers list pagination -->
+      <div class="row mt-5" *ngIf="totalItems">
+        <div class="col">
+          <app-pagination [totalItems]="totalItems" [currentPage]="currentPage" (childEvent)="getSaloonOrders ($event)"></app-pagination>
+        </div>
+      </div>  <!-- display barbers list pagination -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="row bg-white mt-3 ml-3 mr-3 shadow">
+  <div class="d-flex p-2 border-bottom">
+    <h5 class="text-capitalize h6 pl-3 pt-3 pb-3 text-dark">{{ pageTitle }}</h5>
+  </div>
+</div>
+
+<div class="row bg-white mb-3 ml-3 mr-3 shadow">
+  <div class="col">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col" class="text-capitalize text-sm text-muted font-weight-normal">logo</th>
+            <th scope="col" class="text-capitalize text-sm text-muted font-weight-normal">shop name</th>
+            <th scope="col" class="text-capitalize text-sm text-muted font-weight-normal">address</th>
+            <th scope="col" class="text-capitalize text-sm text-muted font-weight-normal">status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let saloon of saloonList;">
+            <td scope="row" class="text-capitalize text-black-50">
+              <img [alt]="saloon?.name" [src]="saloon?.logo_url" class="logo_url" />
+            </td>
+            <td scope="row" class="text-capitalize name text-black-50">
+              {{ saloon?.name }}
+            </td>
+            <td scope="row" class="text-capitalize address text-black-50">
+              {{ saloon?.address }}
+            </td>
+            <td scope="row" class="text-capitalize status text-black-50">
+              {{ saloon?.shop_flag }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

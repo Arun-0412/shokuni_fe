@@ -1,0 +1,77 @@
+.bg-pagination-select {
+    background-color: #6D6CC9 !important;
+}
+
+.page-link {
+    color: #D7D8DD;
+    border:none;
+    border-radius: 50%;
+    padding: .5rem 0.9rem;
+    /* background-color: #E6E6E6; */
+}
+
+.page-item:first-child .page-link {
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+
+.page-item:last-child .page-link {
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+
+.saloon-logo {
+    max-width: 6rem;
+}
+
+.table thead th {
+    border-bottom: none;
+    border-top: none;
+    color:#8895b7;
+    font-size:0.7rem;
+}
+
+.table td {
+    border-top: none;
+}
+
+.border-dashed-bottom {
+    border-bottom: 1px dashed #E6E6E6;
+}
+
+@media (min-width: 1200px) {
+    .col-xl-4 {
+        flex: 0 0 31.333333%;
+    }
+}
+.product_name_class{
+    color:#adafb9;
+    font-size:0.6rem;
+    font-weight:500;
+}
+.product_amount_class{
+    color:#847fcf;
+    font-size:0.6rem;
+    font-weight:700;
+}
+.text-order-total {
+    color:#8e9abb;
+    font-size:10px;
+    font-weight:800;
+}
+.btn-export {
+    border: 0.7px solid #c2c2c2;
+    border-radius: 20px;
+    font-size: 0.6rem;
+    color: #908f99;
+    font-weight:800;
+}
+.padding_total_amount{
+    padding-top:15px;
+}
+
+.color-saloon-name{
+    color: #63626f !important;
+    font-size:15px !important;
+    font-weight: bold !important;
+}

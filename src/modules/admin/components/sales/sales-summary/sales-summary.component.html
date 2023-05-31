@@ -1,0 +1,120 @@
+<div class="row ml-4 mt-4 mb-3 mr-2">
+  <!-- Button trigger modal -->
+  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Pay to barber
+  </button> -->
+
+  <!-- Modal -->
+  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Payout amount</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body"> -->
+          <!-- =========================================== -->
+          <!-- <form class="row ml-4 mr-4 mb-5 mt-5" [formGroup]="payForm" novalidate>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="h6 required">Ammount</label>
+                <input type="text" class="form-control no-side-border" appTrimInput required formControlName="pay_out_balance" maxlength="20" autocomplete="off" pattern="[0-9]" title="Only number allowed.">
+                <show-errors [control]="payForm.controls.pay_out_balance"></show-errors>
+              </div>
+            </div>
+            
+            <div class="col-md-12">
+              <small><span class="required"></span> indicates required</small>
+              <div class="text-left mt-2">
+                <button [disabled]="!payForm.valid" (click)="submitPay(payForm)" class="btn btn-shokuni text-capitalize mr-3">Pay</button> -->
+                <!-- <button type="reset" class="btn btn-transparent text-capitalize">cancel</button> -->
+                <!-- <button type="button" class="btn btn-transparent text-capitalize" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+        </form> -->
+          <!-- =========================================== -->
+        <!-- </div> -->
+        <!-- <div class="modal-footer">
+          
+        </div> -->
+      <!-- </div>
+    </div>
+  </div> -->
+</div>
+<div class="row ml-4 mt-4 mb-3 mr-2">
+  <!-- display the right section -->
+  <div class="col-sm-12 col-xs-12 col-md-7 col-xl-7 col-lg-7">
+    <!-- Display Total Revenue/ Fee paid -->
+    <div class="row">
+      <!-- Display Total Revenue -->
+      <div class="col-sm-6 bg-white pt-5 pl-4 pr-4 pb-5 horizontal-divider-right">
+        <div class="d-flex justify-content-between">
+          <div class="p-2 text-capitalize font-weight-500 text-secondary font-size-14">total revenue <br/><small>to date</small></div>
+          <div class="p-2 text-capitalize color-shokuni font-weight-bold"><p>{{ salesSummary?.total_payouts  | currency:'GBP' }}</p></div>
+        </div>
+      </div>
+      <!-- Display Fee paid -->
+      <div class="col-sm-6 bg-white pt-5 pl-4 pr-4 pb-5">
+        <div class="d-flex justify-content-between">
+          <div class="p-2 text-capitalize font-weight-500 text-secondary font-size-14">admin fees <br/><small>to date</small></div>
+          <div class="p-2 text-capitalize color-shokuni font-weight-bold"><p>{{ salesSummary?.admin_fee | currency:'GBP' }}</p></div>
+        </div>
+      </div>
+    </div><!-- End of Display Total Revenue/ Fee paid -->
+
+
+    <div class="row mt-3">
+      <!-- Display Total Revenue -->
+      <div class="col-sm-6 bg-white pt-5 pl-4 pr-4 pb-5 horizontal-divider-right">
+        <div class="d-flex justify-content-between">
+          <div class="p-2 text-capitalize font-weight-500 text-secondary font-size-14">total card revenue <br /><small>(Includes Stripe fee)</small><br />
+            <small>to date</small></div>
+          <div class="p-2 text-capitalize color-shokuni font-weight-bold"><p>{{ salesSummary?.card_revenue | currency:'GBP' }}</p></div>
+        </div>
+      </div>
+      <!-- Display Fee paid -->
+      <div class="col-sm-6 bg-white pt-5 pl-4 pr-4 pb-5">
+        <div class="d-flex justify-content-between">
+          <div class="p-2 text-capitalize font-weight-500 text-secondary font-size-14">total cash revenue <br/><small>to date</small></div>
+          <div class="p-2 text-capitalize color-shokuni font-weight-bold"><p>{{ salesSummary?.cash_revenue | currency:'GBP' }}</p></div>
+        </div>
+      </div>
+    </div><!-- End of Display Total Revenue/ Fee paid -->
+  </div>
+
+  <!-- display the left section -->
+  <div class="col">
+    <div class="bg-white p-3">
+      <div class="d-flex justify-content-between">
+        <div class="p-2 text-capitalize font-weight-500 text-secondary font-size-14">card <br/><small>to date</small></div>
+        <div class="p-2 text-capitalize color-shokuni font-weight-bold"><p>{{ salesSummary?.total_card_request }}</p></div>
+      </div>
+
+      <div class="progress progress-height-5 mt-4">
+        <div class="progress-bar bg-danger" role="progressbar" [style.width.%]="calculateSalesSummaryPercentage (salesSummary?.total_card_request, salesSummary?.total_cash_request + salesSummary?.total_card_request)" aria-valuenow="(salesSummary?.total_card_request, salesSummary?.total_cash_request + salesSummary?.total_card_request)}}" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <div class="p-2 text-capitalize text-muted font-weight-light text-sm">total</div>
+        <div class="p-2 text-muted font-weight-light text-sm">{{calculateSalesSummaryPercentage (salesSummary?.total_card_request, salesSummary?.total_cash_request + salesSummary?.total_card_request)}}%</div>
+      </div>
+    </div>
+    
+    <div class="bg-white p-3 mt-3">
+      <div class="d-flex justify-content-between">
+        <div class="p-2 text-capitalize font-weight-500 text-secondary font-size-14">cash<br/><small>to date</small></div>
+        <div class="p-2 text-capitalize color-shokuni font-weight-bold">{{ salesSummary?.total_cash_request }}</div>
+      </div>
+
+      <div class="progress progress-height-5 mt-4">
+        <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" [style.width.%]="calculateSalesSummaryPercentage (salesSummary?.total_cash_request, salesSummary?.total_cash_request + salesSummary?.total_card_request)"></div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <div class="p-2 text-capitalize text-muted font-weight-light text-sm">total</div>
+        <div class="p-2 text-muted font-weight-light text-sm">{{calculateSalesSummaryPercentage (salesSummary?.total_cash_request, salesSummary?.total_cash_request + salesSummary?.total_card_request)}}%</div>
+      </div>
+    </div>
+  </div>
+
+</div>  <!-- End of Row Class---->

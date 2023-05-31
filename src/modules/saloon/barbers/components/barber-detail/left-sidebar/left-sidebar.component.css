@@ -1,0 +1,43 @@
+.profile-img {
+    width: 7rem;
+    height: 7rem;
+}
+
+.list-group-item {
+    border: none;
+}
+
+.pb-20 {
+    padding-bottom: 14rem;
+}
+span{
+    color:#9798a0 !important;
+    font-size:9px !important;
+    font-weight:600 !important;
+}
+p{
+font-size:10px !important;
+font-weight:600 !important;
+color:#78797c;
+margin-bottom: 0px !important; 
+}
+.badge{
+    color:#fff !important;
+}
+.span_text{
+    font-size:7px !important;
+    color:#cbccd0 !important;
+}
+h5{
+    color:#4e4e4f !important;
+    font-size:11px !important;
+    font-weight:bold;
+}
+h6{
+    color:#c7c8cd !important;
+    font-size:9px !important;
+    font-weight: 600  !important;
+}
+.card-body {
+      padding: 0.25rem !important;
+}

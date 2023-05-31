@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <!-- display page title -->
+  <div class="row">
+    <div class="col ml-3">
+      <p class="text-capitalize h3">{{barberDetail?.first_name}} {{barberDetail?.last_name}}</p>
+    </div>
+  </div>
+  
+  
+  <div class="row mt-3 ml-0 mb-4" *ngIf="barberDetail">
+
+    <!-- display left side bar of the barber profile to barber admin -->
+    <div class="col-3">
+      <app-left-sidebar [barberDetail]="barberDetail"></app-left-sidebar>
+    </div>
+
+    <div class="col pl-0">
+      <app-right-sidebar [barberDetail]="barberDetail"></app-right-sidebar>
+    </div>
+  </div>
+
+
+</div>
+  

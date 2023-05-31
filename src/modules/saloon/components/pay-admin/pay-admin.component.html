@@ -1,0 +1,33 @@
+<!-- display payment-info change screen -->
+<div class="row ml-4 pb-5 mr-4">
+  <div class="col bg-white">
+    <p class="text-capitalize mt-4 mb-4">{{pageTitle}}</p>
+  
+    <!-- seperator or line -->
+    <div class="line"></div>
+  
+    <div class="col-5 pb-4">
+      <!-- design payment information HTML code -->
+      <form [formGroup]="paymentInfoForm" novalidate>
+        <div class="form-group">
+          <label class="h6 text-capitalize">Total Ammount</label>
+          <input type="text" class="form-control no-side-border" appTrimInput name="total_ammount" maxlength="255" autocomplete="off" readonly value="{{ salesSummary?.card_revenue + salesSummary?.cash_revenue | currency:'GBP' }}">
+        </div>
+
+        <div class="form-group">
+          <label class="h6 required text-capitalize">account to be paid</label>
+          <input type="text" class="form-control no-side-border" appTrimInput required name="paid_ammount" maxlength="255" autocomplete="off">
+        </div>
+
+        <!-- seperator or line -->
+        <div class="line mt-4 mb-4"></div>
+
+        <small><span class="required"></span> indicates required</small>
+        <div class="text-left mt-2">
+          <button class="btn btn-shokuni text-capitalize mr-3"  [disabled]="!paymentInfoForm.valid" (click)="submitPaymentInfoForm (paymentInfoForm)">Pay</button>
+          <button type="reset" class="btn btn-transparent text-capitalize">cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

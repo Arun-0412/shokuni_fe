@@ -1,0 +1,36 @@
+body, html {
+    font-size: 13px;
+    font-weight: 300;
+    font-family: Poppins;
+    -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+}
+
+.line {
+    height: 1px;
+    border-bottom: 1px solid #ddd;
+}
+
+.btn-shokuni {
+    background-color: #15234A;
+    color: #FFF;
+}
+
+.required::after {
+    color: #EF615F;
+    font-size: 1rem;
+    content: ' *';
+}
+
+.btn-transparent {
+    background-color: #FFF;
+    border-color: #ddd;
+}
+
+.text-shokuni {
+    color: #15234A;
+}
+
+.bg-white {
+    background-color: #FFF;
+}

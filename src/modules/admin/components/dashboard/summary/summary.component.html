@@ -1,0 +1,109 @@
+<div class="row m-3">
+    <div class="col-4 bg-white shadow">
+        <div class="text-capitalize display-5 text-dark">{{ getDate() | date:'EEEE' }}</div>
+        <div class="text-capitalize text-muted">{{ getDate () | date:'dd' }}<sup>{{ nth (getDate () | date:'dd') }}</sup> {{ getDate () | date:'MMMM' }}</div>
+        <div class="text-black-50 mt-5">{{ getDate () | date:'hh:mm' }}<sub>{{ lowercase (getDate () | date:'a') }}</sub></div>
+    </div>
+  
+    <div class="col ml-3">
+      <div class="row shadow bg-white">
+        <div class="col border-right">
+          <div class="row border-bottom">
+            <div class="col text-dark text-capitalize">
+              <div class="d-flex flex-column bd-highlight mb-3">
+                <div class="p-2 font-weight-bold"><h3 class="font-weight-bold text-secondary">{{ dashboard?.customers }}</h3><span class="d-block text-sm bd-highlight"><small class="d-block">customers today</small></span></div>
+                <!-- <div class="text-secondary text-capitalize text-sm p-2 bd-highlight">customers today</div> -->
+              </div>
+            </div>
+            <div class="col text-dark text-capitalize">
+              <div class="d-flex flex-column bd-highlight mb-3">
+                <div class="p-2 font-weight-bold"><h3 class="font-weight-bold text-secondary">{{ dashboard?.cuts }}</h3><span class="d-block text-sm bd-highlight"><small class="d-block">cuts today</small></span></div>
+                <!-- <div class="text-secondary text-capitalize text-sm p-2 bd-highlight">cuts today</div> -->
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-dark text-capitalize">
+              <div class="d-flex flex-column bd-highlight mb-3">
+                <div class="p-2 font-weight-bold">
+                  <h3 class="text-secondary"><span class="text-success">+</span>{{ dashboard?.chair_open }} /
+                  <span class="text-danger">-</span>{{ dashboard?.chair_close }}</h3><span class="d-block text-sm bd-highlight"><small class="d-block">chairs open / closed</small></span>
+                </div>
+                <!-- <div class="text-secondary text-capitalize text-sm bd-highlight">chairs open / closed</div> -->
+              </div>
+            </div>
+            <div class="col text-dark text-capitalize">
+              <div class="d-flex flex-column bd-highlight mb-3">
+                <div class="p-2 font-weight-bold"><h3 class="text-secondary">{{ dashboard?.avg_wait_time }}<sub class="text-lowercase">m</sub></h3><span class="d-block text-sm bd-highlight"><small class="d-block">average queue wait time</small></span></div>
+                <!-- <div class="text-secondary text-capitalize text-sm bd-highlight">average queue wait time</div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col-md-6">
+              <p class="active_shops">Active Shops</p>
+             </div>
+            <div class="col-md-6">
+              <p class="numeric_value"><span>+6</span>/<span class="four_num">-4</span></p> 
+            </div>
+          </div>
+          <div class="row">
+             <div class="col-md-6">
+               <i style="font-size: 20px;color: #71fac7;padding:20px 0px 0px 20px;" class="fa">&#xf19c;</i>
+             </div>
+            <div class="col-md-6">
+               <p class="open_timing">{{ dashboard?.shopes_open}}</p>
+                 <h5 class="shop_open">Open</h5>
+            </div>
+          </div>
+          <div class="row">
+             <div class="col-md-6">
+               <i style="font-size: 20px;color: #b46d6b;padding:20px 0px 0px 20px;" class="fa">&#xf19c;</i>
+             </div>
+            <div class="col-md-6">
+               <p class="open_timing">{{ dashboard?.shopes_close}}</p>
+                 <h5 class="shop_open">Closed</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>             
+  </div>
+
+
+  <div class="row m-3 bg-white p-4">
+    <div class="col">
+      <div class="d-flex  text-capitalize text-secondary font-weight-bold">sales today</div>
+      <div class="d-flex  text-capitalize font-weight-light text-muted">revenue from cuts</div>
+
+      <div class="d-flex p-2 text-capitalize font-weight-light">
+        <span class="display-4 text-primary font-weight-normal">{{ dashboard?.income | currency:'GBP' }}<sub class="text-muted"><small>total revenue today</small></sub></span>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col">
+          <div class="d-flex text-capitalize text-secondary font-weight-bold">revenue by location</div>
+          <div class="d-flex  text-capitalize font-weight-normal text-secondary">country map</div>
+        </div>
+      </div>
+      <br>
+      
+      <div class="row">
+        <div class="col">
+          <div class=" h3 text-capitalize text-danger font-weight-bold">{{ dashboardSummary?.highest_revenue_country }} </div>
+           <div class="d-flex text-capitalize text-muted font-weight-normal high_revn">highest revenue</div>
+        </div>
+        <div class="col">
+          <div class=" h3 text-capitalize text-danger font-weight-bold">{{ dashboardSummary?.highest_cuts_country }}</div>
+          <div class="d-flex  text-capitalize text-muted font-weight-normal high_revn">most cuts</div>
+        </div>
+        <div class="col">
+          <div class=" h3 text-capitalize text-danger font-weight-bold">{{ dashboard?.lowest_wait_time }}</div>
+          <div class=" text-capitalize text-muted font-weight-normal high_revn">lowest wait time</div>
+        </div>
+      </div>
+    </div>
+  </div>

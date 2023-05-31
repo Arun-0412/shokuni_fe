@@ -1,0 +1,83 @@
+.display-5 {
+    font-size: 2rem;
+}
+
+.avatar {
+    width: 9rem;
+}
+p{
+    font-size:11px !important;
+    font-weight: 600 !important;
+    color:#898a8f !important;
+}
+.text-primary{
+    color: #1e336f !important;
+}
+.text-danger{
+    color: #bf6d6f !important;
+}
+.high_revn{
+    margin-top: -7px !important;
+    color:#b6b5c1 !important;
+    font-size:11px !important;
+    font-weight: 500 !important;
+}
+small{
+    font-size:8px !important;
+    font-weight:500  !important;
+}
+.active_shops{
+    color: #646470 !important;
+    font-size: 16px !important;
+    padding: 8px 0px 0px 0px !important;
+    font-weight: 400 !important;
+    margin-bottom: 0 !important;
+  }
+  .numeric_value .four_num {
+     color:#e49592 !important;
+     font-size:10px !important;
+     font-weight:600 !important;
+  }
+  .numeric_value span {
+     color:#8ed9c3 !important;
+     font-size:10px !important;
+     font-weight:600 !important;
+  }
+  .numeric_value {
+     color:#646470 !important;
+     padding: 14px 0px 0px 0px !important;
+     font-size:10px !important;
+     font-weight:500 !important;
+  }
+  .open_timing{
+     color: #b46d6b !important;
+     padding: 12px 0px 0px 0px !important;
+     font-size:17px !important;
+     font-weight:bold !important;
+     margin-bottom: 0 !important;
+  }
+  .shop_open{
+     color:#646470 !important;
+     padding: 0 0 0 0px !important;
+     font-size:8px !important;
+     font-weight:700 !important;
+     margin-bottom: 0 !important;
+  }
+  .totaktake{ color: #96979b;font-size:13px;font-weight:bold;margin-bottom: 0; }
+  .totaktakedesc{ color:#abacb8;font-size: 10px;font-weight: bold;}
+  .total_countt{
+    font-size: 33px !important;
+font-weight: bold !important;
+color: #1e336f !important;
+}
+.total_countt span{
+    color:#abacb8 !important;
+    font-size:11px !important;
+    font-weight: bold !important;
+    padding-left: 8px !important;
+}
+.avgcuts{ color: #96979b !important;font-size:13px !important;font-weight:bold !important;margin-bottom: 0 !important; }
+.avgcutsdesc{ color:#abacb8 !important;font-size: 10px !important;font-weight: bold !important; }
+.avgcuts_highrev{ color: #bf6d6f !important;font-size:13px !important;font-weight:bold !important;margin-bottom: 0 !important; }
+.coldiv{ border-right: 1px solid !important; border-color: #f1f4f7 !important;padding: 30px 0px 20px 50px !important; }
+.coldiv2{ padding: 30px 0px 20px 50px !important; }

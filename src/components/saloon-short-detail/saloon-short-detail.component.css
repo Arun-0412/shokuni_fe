@@ -1,0 +1,12 @@
+.display-5 {
+    font-size: 2rem;
+}
+
+.avatar {
+    width: 9rem;
+}
+p{
+    font-size:11px !important;
+    font-weight: 600 !important;
+    color:#898a8f !important;
+}

@@ -1,0 +1,66 @@
+<div class="container-fluid">
+  <!-- display page title -->
+  <div class="row mb-4">
+    <div class="col">
+      <p class="text-capitalize h3 ml-4">{{pageTitle}}</p>
+    </div>
+  </div>
+
+  <div class="row bg-white mb-5 ml-4 mr-5">
+    <div class="col">
+      <p class="text-capitalize h5 ml-2 mt-5 mb-4 submit_ticket">submit a ticket</p>
+  
+      <!-- seperator or line -->
+      <div class="line"></div>
+    </div>
+
+    <div class="row ml-2 mt-5 mb-5">
+      <div class="col-xs-12 col-sm-12 col-lg-6 col-xl-6 col-md-6 mr-5">
+        <p class="text-capitalize h5 mb-2 need_extra">need extra help?</p>
+        <p class="text-justify mb-4 text_descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nunc urna, condimentum nec vulputate a, vulputate et orci. Donec faucibus dictum ligula, sed condimentum tortor venenatis eu. Phasellus ac elit at dolor fermentum vestibulum vitae sed nisl. Praesent pellentesque vulputate dolor, quis molestie massa luctus eu. Aenean ipsum ante, facilisis bibendum leo at, suscipit dapibus tortor. Aliquam vitae ornare libero. Duis commodo semper nisl eget luctus. Duis sed interdum ex, nec mollis ex. Donec rhoncus facilisis odio, et egestas dolor imperdiet ac. Cras et ipsum leo. Pellentesque ac elementum mauris, nec laoreet nisi.</p>
+      </div>
+    
+      <div class="col-xs-12 col-sm-12 col-lg-5 col-xl-5 col-md-5">
+        <!-- change-password form -->
+        <form [formGroup]="supportForm" novalidate>
+          <div class="form-group">
+            <label class="h6">Issue Type</label>
+            <select class="form-control" formControlName="type">
+              <option [selected]="true" disabled>Select Type</option>
+              <option value="1">First Issue type</option>
+              <option value="2">Second Issue type</option>
+              <option value="3">Third Issue type</option>
+              <option value="4">Fourth Issue type</option>
+              <option value="5">Fifth Issue type</option>
+              <option value="6">Sixth Issue type</option>
+            </select>
+            <show-errors [control]="supportForm.controls.type"></show-errors>
+          </div>
+              
+          <div class="form-group">
+            <label class="h6">Detailed Description</label>
+            <textarea class="form-control" appTrimInput required formControlName="description" placeholder="Describe the issue that you're having" rows="3"></textarea>
+            <show-errors [control]="supportForm.controls.description"></show-errors>
+          </div>
+    
+          <div class="form-group">
+            <label class="h6">Detailed Description</label>
+            <input type="hidden" formControlName="file" />
+            <div class="input-group">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" (change)="uploadFile ($event)">
+                <label class="custom-file-label text-capitalize">{{fileLabel}}</label>
+              </div>
+            </div>
+            <show-errors [control]="supportForm.controls.file"></show-errors>
+          </div>
+              
+          <div class="text-left mt-2">
+            <button [disabled]="!supportForm.valid" (click)="submitSupportForm (supportForm)" class="btn btn-shokuni text-capitalize mr-3">submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

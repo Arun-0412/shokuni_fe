@@ -1,0 +1,51 @@
+.datetex {
+    color: #abacb8;
+    font-size: 10px;
+    padding-left: 10px;
+    text-align: left;
+    background: white;
+    border-radius: 15px;
+    line-height: 30px;
+    float: right;
+    margin-right: 21px !important;
+}
+.dd {
+    color: #655ec2;
+}
+.dropicon {
+    float: right;
+    margin-right: 4px;
+    height: 25px;
+    width: 34px;
+    line-height: 20px;
+    padding-left: 9px;
+    margin-top: -3px;
+}
+.date_picker {
+    position: relative !important;
+    white-space: nowrap !important;
+     width: 1px !important; 
+    font-size: 0% !important;
+    background: transparent !important;
+}
+i {
+    padding-left: 0px !important;
+}
+.btn-bs-file{
+    position:relative;
+}
+
+.btn-bs-file input[type="file"]{
+    position: absolute;
+    top: -9999999;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    width:0;
+    height:0;
+    outline: none;
+    cursor: inherit;
+}
+
+.width-20 {
+    width: 1rem;
+}

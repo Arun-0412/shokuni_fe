@@ -1,0 +1,92 @@
+<!-- display payment-info change screen -->
+<div class="row ml-4 pb-5 mr-4">
+  <div class="col bg-white">
+    <div class="col-12 pb-4">
+    <p class="text-capitalize mt-4 mb-4">{{pageTitle}}</p>
+    <div class="line"></div>
+    </div>
+    <div *ngIf="stripeId" class="col-5 pb-4">
+    <p class="text-capitalize mt-4 mb-4">Account Id</p>
+    <p style="color: #c7c7cf;font-size: 11px;font-weight: bold;">{{stripeId}}</p>
+  </div>
+    <div *ngIf="stripeId"  class="line"></div>
+    <div class="col-5 pb-4" *ngIf="stripeErrorMessage">
+      <p class="mt-4 p_text">{{stripeErrorMessage}}</p>
+      <button (click)="newStripeAccount()">Stripe Link</button>
+    </div>
+    <div *ngIf="stripeId" class="line"></div>
+    <div class="col-5 pb-4" *ngIf="stripeSuccesMessage" >
+      <p class="text-capitalize mt-4 mb-4">Status</p>
+      <p style="color: #c7c7cf;font-size: 11px;font-weight: bold;">{{stripeSuccesMessage}}</p>
+    </div>
+    <div *ngIf="stripeId" class="line"></div>
+    <div class="col-5 pb-4">
+      <p class="text-capitalize mt-4 mb-4">Provide your keys</p>
+      <form [formGroup]="paymentInfoForm" novalidate>
+        <div class="form-group">
+          <label class="h6 required text-capitalize">stripe key</label>
+          <input type="text" class="form-control no-side-border" appTrimInput required formControlName="stripe_key" maxlength="255" autocomplete="off">
+          <show-errors [control]="paymentInfoForm.controls.stripe_key"></show-errors>
+        </div>
+
+        <div class="form-group">
+          <label class="h6 required text-capitalize">stripe secret</label>
+          <input type="text" class="form-control no-side-border" appTrimInput required formControlName="stripe_secret" maxlength="255" autocomplete="off">
+          <show-errors [control]="paymentInfoForm.controls.stripe_secret"></show-errors>
+        </div>
+        <button [disabled]="!paymentInfoForm.valid" (click)="saveStripeAccount (paymentInfoForm)">Save</button>
+      </form>
+      </div>
+        
+  
+    <!-- seperator or line -->
+    <!-- <div class="line"></div> -->
+    <div class="col-5 pb-4" *ngIf="!stripeId">
+    <p class="mt-4 p_text">To connect payment account with shokuni</p>
+      <button (click)="submitPaymentURL()">Click here</button>
+    </div>
+    <!-- <div *ngIf="stripeAccount">
+      <form [formGroup]="paymentInfoForm" novalidate>
+        <label class="h6 required text-capitalize">Enter stripe Id</label>
+        <input type="text" class="form-control no-side-border" appTrimInput required formControlName="stripeCode" maxlength="255" autocomplete="off">
+        <show-errors [control]="paymentInfoForm.controls.stripeCode"></show-errors>
+        <button [disabled]="!paymentInfoForm.valid" (click)="saveStripeAccount (paymentInfoForm)">Save</button>
+      </form>
+    </div> -->
+  <!-- <div *ngIf="cancelBtn">
+    <button (click)="stripeCancel()" style="background-color: red;color: white;">Cancel</button> 
+  </div> -->
+  
+    <!-- <div class="col-5 pb-4"> -->
+      <!-- design payment information HTML code -->
+      <!-- <form [formGroup]="paymentInfoForm" novalidate>
+        <div class="form-group">
+          <label class="h6 required text-capitalize">account number</label>
+          <input type="text" class="form-control no-side-border" appTrimInput required formControlName="account_number" maxlength="255" autocomplete="off">
+          <show-errors [control]="paymentInfoForm.controls.account_number"></show-errors>
+        </div>
+
+        <div class="form-group">
+          <label class="h6 required text-capitalize">enter short code</label>
+          <input type="text" class="form-control no-side-border" appTrimInput required formControlName="code" maxlength="255" autocomplete="off">
+          <show-errors [control]="paymentInfoForm.controls.code"></show-errors>
+        </div>
+
+        <div class="form-group">
+          <label class="h6 required text-capitalize">name on account</label>
+          <input type="text" class="form-control no-side-border" appTrimInput required formControlName="name_on_account" maxlength="255" autocomplete="off">
+          <show-errors [control]="paymentInfoForm.controls.name_on_account"></show-errors>
+        </div> -->
+
+        <!-- seperator or line -->
+        <!-- <div class="line mt-4 mb-4"></div>
+
+        <small><span class="required"></span> indicates required</small>
+        <div class="text-left mt-2">
+          <button [disabled]="!paymentInfoForm.valid" (click)="submitPaymentInfoForm (paymentInfoForm)" class="btn btn-shokuni text-capitalize mr-3">save</button>
+          <button type="reset" class="btn btn-transparent text-capitalize">cancel</button>
+        </div>
+      </form>
+    </div> -->
+  </div>
+</div>

@@ -1,0 +1,95 @@
+<div class="container-fluid" >
+  <!-- display page title -->
+  <div class="row">
+    <div class="col">
+      <p class="text-capitalize h3 ml-4">{{pageTitle}}</p>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col bg-white ml-5 mb-5 mr-5 mt-4 pb-1">
+      <div class="row">
+        <div class="col">
+          <p class="text-capitalize h5 ml-3 mt-4 mb-4">{{subTitle}}</p>
+        </div>
+        <div class="col text-right mt-3">
+          <span class="btn text-capitalize btn-transpert" data-toggle="modal" data-target="#inviteBarber">invite barber</span>
+        </div>
+      </div>
+
+      <!-- seperator or line -->
+      <div class="line"></div>
+
+
+      <!-- <Design table to display barbers information under the saloon -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="text-capitalize">barber</th>
+            <th scope="col" class="text-capitalize">total cuts</th>
+            <th scope="col" class="text-capitalize">average cut time</th>
+            <th scope="col" class="text-capitalize">revenue</th>
+            <th scope="col" class="text-capitalize">last active</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="barberList">
+          <tr *ngFor="let barber of barberList;">
+            <td>
+              <div class="media">
+                <img class="mr-3 rounded-circle width-3" [src]="barber.image_url" [alt]="barber.name"/>
+                <a [routerLink]="getBarberRouterLink(barber.userId)">
+                  <div class="media-body mt-3 barber_name">{{barber.name}}</div>
+                </a>
+              </div>
+            </td>
+            <td>{{barber.total_cuts}}</td>
+            <td>{{barber.total_cutting_time_in_seconds | secondsToMinuits }}<span>min</span></td>
+            <td>{{barber.total_revenue | currency:'GBP'}}</td>
+            <td>{{barber.last_active_time * 1000 | date:'dd/MM/y H:mm' }}</td>
+          </tr>
+        </tbody>
+      </table>  <!--End of table to display barber list---->
+
+      <!-- seperator or line -->
+      <div class="line"></div>
+
+      <!-- display barbers list pagination -->
+      <div class="row mt-5" *ngIf="totalItems">
+        <div class="col">
+          <!--Pagination -->
+          <app-pagination [totalItems]="totalItems" [currentPage]="currentPage" (childEvent)="getSaloonBarbers ($event)"></app-pagination>
+        </div>
+      </div>  <!-- display barbers list pagination -->
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Invite barber Modal -->
+<div class="modal fade bd-example-modal-sm" id="inviteBarber" tabindex="-1" role="dialog" aria-labelledby="inviteBarberLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-capitalize" id="inviteBarberLabel">invite barber</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="inviteForm" novalidate>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="h6 text-capitalize">barber email:</label>
+            <input type="text" class="form-control" appTrimInput required formControlName="email" maxlength="255" autocomplete="off" />
+            <show-errors [control]="inviteForm.controls.email"></show-errors>
+          </div>
+        </div>
+        <div class="modal-footer text-left">
+          <button type="button" [disabled]="!inviteForm.valid" class="btn btn-shokuni text-capitalize" (click)="submitInviteForm (inviteForm)" data-dismiss="modal">invite</button>
+          <button type="button" class="btn btn-transpert text-capitalize" data-dismiss="modal">cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

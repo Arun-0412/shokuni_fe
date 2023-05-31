@@ -1,0 +1,41 @@
+h6{
+    color:#8a8a93 !important;
+    font-weight: bold !important;
+    font-size:11px !important;
+}
+p{
+    color:#bdbcc6 !important;
+    font-size:9px !important;
+    font-weight: 600 !important;
+}
+.cut_break{
+    color:#5c5b69 !important;
+    font-weight:600 !important;
+    font-size:14px !important;
+}
+.avatar {
+    width: 3rem;
+}
+
+.text-medium {
+    font-size: 14px;
+}
+.text-danger {
+    color: #bf6d70!important;
+}
+.barber_name{
+    color:#9d9ca5 !important;
+    font-size:9px !important;
+    font-weight: 500 !important;
+}
+
+.breakdown-width {
+    width: 1.5rem;
+
+
+    background-color: transparent;
+  display: inline-block;
+  width: 10px;
+  height: 0px;
+  margin-right: 3px;
+}

@@ -1,0 +1,70 @@
+.avatar {
+    width: 6rem;
+}
+
+.btn-bs-file{
+    position:relative;
+}
+.btn-bs-file input[type="file"]{
+    position: absolute;
+    top: -9999999;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    width:0;
+    height:0;
+    outline: none;
+    cursor: inherit;
+}
+
+.no-right-border {
+    border-right: none;
+}
+
+.no-left-border {
+    border-left: none;
+}
+.edit_profile{
+    color: #5e6069;
+    font-size:14px;
+    font-weight:bold;
+
+}
+label{
+    font-size:10px;
+    font-weight: 600;
+    color: #48494e;
+}
+.required::after {
+    color: #EF615F;
+    font-size: 11px;
+    content: ' *';
+}
+.text-shokuni{
+    font-weight:bold !important;
+    font-size:9px !important;
+    color:#4b5573 !important;
+}
+.email_verfid{
+    font-weight:bold;
+    font-size:8px;
+}
+.btn-shokuni{
+    color:#fff !important;
+}
+.upload_img{
+    color:#a7aab0 !important;
+    font-size:8px !important;
+    font-weight: bold !important;
+}
+.indicates_req{
+    color:#a7aab0 !important;
+    font-size:11px !important;
+    font-weight: bold !important; 
+}
+.save_btn{
+    font-size: 11px !important;
+}
+.form-control{
+font-size: 0.7rem !important;
+font-weight: 600 !important;
+}

@@ -1,0 +1,39 @@
+<div class="container-fluid" >
+  <!-- display page title -->
+  <div class="row">
+    <div class="col">
+      <p class="text-capitalize h3 ml-3">{{pageTitle}}</p>
+    </div>
+
+    <!-- display datepicker -->
+   <!--  <div class="col text-right">
+      <div class="d-flex justify-content-end">
+        <p class="datetex">
+          Today: 
+          <span class="dd">{{ selectedDate | date:'MMM dd' }}</span>
+         
+        </p>
+       <div class="width-20 justify-content-end mr-5">
+          <my-date-picker [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)"></my-date-picker>
+        </div>
+      </div>
+    </div> -->
+    <div class="col-md-8 col-sm-8 col-xs-8" style="margin-left: -1%;">
+      <p class="datetex">Today: <span class="dd">{{ selectedDate | date:'MMM dd' }}</span> 
+        <!--  <i class="fa dropicon">&#xf078;</i> -->
+        <my-date-picker class="dropicon" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)"></my-date-picker>
+
+       </p>
+   </div>
+
+  </div>
+
+  <!-- display saloon-summary -->
+  <app-summary [selectedDate]="selectedDate"></app-summary>
+
+  <!-- display pending review -->
+  <app-pending-review></app-pending-review>
+
+  <!-- display forumn HTML -->
+  <app-barber-join-discussion></app-barber-join-discussion>
+</div>

@@ -1,0 +1,25 @@
+th {
+  color: #8d9aba;
+  font-size: 9px;
+  font-weight: bold;
+}
+td {
+  color: #e2e2fd;
+  font-size: 11px;
+  font-weight: bold;
+}
+a {
+  color: #c7c7cf;
+  font-size: 11px;
+  font-weight: bold;
+}
+.pay_id {
+  color: #757481 !important;
+  font-size: 11px !important;
+  font-weight: bold !important;
+}
+p {
+  color: #555861 !important;
+  font-weight: bold;
+  font-size: 12px;
+}

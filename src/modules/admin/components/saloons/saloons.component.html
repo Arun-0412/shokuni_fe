@@ -1,0 +1,160 @@
+<div class="container-fluid" >
+    <!-- display page title -->
+    <div class="row">
+      <div class="col">
+        <p class="text-capitalize h3 ml-3">{{pageTitle}}</p>
+      </div>
+    </div>
+  
+  
+    <div class="row bg-white mt-3 ml-3 mr-3 shadow border-bottom">
+      <div class="col">
+        <p class="text-capitalize h5 ml-3 mt-4 mb-4 text-black-50">{{subTitle}}</p>
+      </div>
+      <div class="col text-right mt-3">
+          <div class="form-inline no-flex">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" (keyup)="getSaloons(1, $event.target.value)">
+          </div>
+      </div>
+    </div>
+    
+    <div class="row bg-white ml-3 mr-3 shadow">
+      <div class="col">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col" class="text-capitalize font-weight-bold">#</th>
+                <th scope="col" class="text-capitalize font-weight-bold">logo</th>
+                <th scope="col" class="text-capitalize font-weight-bold">store name</th>
+                <th scope="col" class="text-uppercase font-weight-bold">vat #</th>
+                <th scope="col" class="text-capitalize font-weight-bold">company #</th>
+                <th scope="col" class="text-capitalize font-weight-bold">action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let saloon of saloonList;">
+                <td scope="row" class="text-capitalize text-black-50">
+                  <input type="checkbox" />
+                </td>
+                <td scope="row" class="text-capitalize text-black-50">
+                  <a routerLink="/admin/saloon/{{ saloon?.id }}/sales">
+                    <img [alt]="saloon?.name" [src]="saloon?.logo_url" class="avatar" />
+                  </a>
+                </td>
+                <td scope="row" class="text-capitalize  text-black-50">
+                  <a class="saloon_name" routerLink="/admin/saloon/{{ saloon?.id }}">{{ saloon?.name }}</a>
+                </td>
+                <td scope="row" class="text-capitalize text-black-50">
+                  {{ saloon?.saloon_detail?.vat_number }}
+                </td>
+                <td scope="row" class="text-capitalize text-black-50">
+                  {{ saloon?.saloon_detail?.company_number }}
+                </td>
+                <td scope="row" class="text-capitalize text-black-50">
+                  <span (click)="setSaloon(saloon)" class="btn badge-pill btn-transparent text-capitalize" data-toggle="modal" data-target="#saloonModalCenter"><small>details</small></span>
+                </td>
+                <td scope="row" class="text-capitalize text-black-50">
+                 <img src="./assets/images/admin-icons/view.svg" class="svg">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- display barbers list pagination -->
+    <div class="row bg-white ml-3 mr-3 mb-3 shadow" *ngIf="totalItems">
+      <div class="col">
+        <app-pagination [totalItems]="totalItems" [currentPage]="currentPage" (childEvent)="getSaloons ($event)"></app-pagination>
+      </div>
+      <!-- <div class="col">
+        <span (click)="setSaloon(saloon)" class="btn btn-transparent text-capitalize float-right" data-toggle="modal" data-target="#saloonModalCenter"><small>Generate Request</small></span>
+      </div> -->
+    </div>  <!-- display barbers list pagination -->
+  </div>
+
+
+
+  <!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="saloonModalCenter" tabindex="-1" role="dialog" aria-labelledby="saloonModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row borer-bottom">
+          <div class="col">
+            <img [src]="saloonDetail?.logo_url" [alt]="saloonDetail?.name" class="img-thumbnail saloon-logo">
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="d-flex flex-column bd-highlight ">
+                <div class="p-2 text-capitalize text-black-50 text-sm"><small>name</small><span class="modal_span">{{ saloonDetail?.name }}</span></div>
+               <!--  <div class="p-2 text-capitalize text-body font-weight-normal">{{ saloonDetail?.name }}</div> -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="d-flex flex-column bd-highlight ">
+                <div class="p-2 text-capitalize text-black-50 text-sm"><small>address</small><span class="modal_span">{{ saloonDetail?.address }}, {{ saloonDetail?.postal_code }}</span></div>
+                <!-- <div class="p-2 text-capitalize text-body font-weight-normal">{{ saloonDetail?.address }}, {{ saloonDetail?.postal_code }}</div> -->
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="d-flex flex-column bd-highlight ">
+                <div class="p-2 text-capitalize text-black-50 text-sm"><small>company #</small><span class="modal_span">{{ saloonDetail?.saloon_detail?.company_number }}</span></div>
+                <!-- <div class="p-2 text-capitalize text-body font-weight-normal">{{ saloonDetail?.saloon_detail?.company_number }}</div> -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="d-flex flex-column bd-highlight ">
+                <div class="p-2 text-uppercase text-black-50 text-sm"><small>vat #</small><span class="modal_span">{{ saloonDetail?.saloon_detail?.vat_number }}</span></div>
+                <!-- <div class="p-2 text-capitalize text-body font-weight-normal">{{ saloonDetail?.saloon_detail?.vat_number }}</div> -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="d-flex flex-column bd-highlight">
+                <div class="p-2 text-capitalize text-black-50 text-sm"><small>phone</small><span class="modal_span">({{ saloonDetail?.country_detail?.phonecode }}) {{ saloonDetail?.contact_number }}</span></div>
+                <!-- <div class="p-2 text-capitalize text-body font-weight-normal">({{ saloonDetail?.country_detail?.phonecode }}) {{ saloonDetail?.contact_number }}</div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="line"></div>
+
+        <div class="row text-center mt-2">
+          <div class="col">
+            <div class="d-flex flex-column mb-3">
+              <div class="h5 text-danger font-weight-bold">{{ saloonDetail?.performance?.total }}<span class="span2_modal">cuts</span></div>
+             <!--  <div class="p-2 font-weight-normal text-black-50 text-sm text-lowercase">cuts</div> -->
+            </div>
+          </div>
+          <div class="col">
+            <div class="d-flex flex-column mb-3">
+              <div class="h5 text-danger font-weight-bold">{{ saloonDetail?.performance?.amt | currency:'GBP' }}<span class="span2_modal">total revenue</span></div>
+              <!-- <div class="p-2 font-weight-normal text-black-50 text-sm text-lowercase">total revenue</div> -->
+            </div>
+          </div>
+          <div class="col">
+            <div class="d-flex flex-column mb-3">
+              <div class="h5 text-danger font-weight-bold">{{ (saloonDetail?.performance?.total_time/saloonDetail?.performance?.total) | secondsToMinuits }}<sub>m</sub><span class="span2_modal">avg cut time</span></div>
+             <!--  <div class="p-2 font-weight-normal text-black-50 text-sm text-lowercase">avg cut time</div>-->
+            </div> 
+          </div>
+          <div class="col">
+            <div class="d-flex flex-column mb-3">
+              <div class="h5 text-danger font-weight-bold">{{ saloonDetail?.avg_wait_time_in_min }}<sub>m</sub><span class="span2_modal">average wait time</span></div>
+              <!-- <div class="p-2 font-weight-normal text-black-50 text-sm text-lowercase">average wait time</div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <!-- display page title -->
+    <div class="row">
+        <div class="col">
+        <p class="text-capitalize h3 ml-4 page_title">{{pageTitle}}</p>
+        </div>
+    </div>
+
+
+    <!-- profile div -->
+    <div *ngIf="countries.length">
+        <app-edit-profile [countries]="countries"></app-edit-profile>
+    </div>
+
+
+ 
+    <!-- Request data div -->
+    <div class="row bg-white mb-5 ml-4 mr-5">
+        <div class="col">
+            <p class="text-capitalize h5 ml-5 mt-5 mb-4 request_data">request data</p>
+
+            <!-- seperator or line -->
+            <div class="line"></div>
+            <p class="ml-5 mt-5 mb-4">Download a CSV file containing all the personal data that we store for your profile.</p>
+
+            <span class="btn btn-shokuni mb-5 text-capitalize ml-5" (click)="downloadCSVProfile()">request</span>
+        </div>
+    </div>
+
+    <!-- display delete account mesage -->
+    <app-delete-customer-account></app-delete-customer-account>
+</div>
+

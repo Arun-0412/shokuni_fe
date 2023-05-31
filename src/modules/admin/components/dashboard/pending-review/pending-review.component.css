@@ -1,0 +1,18 @@
+.logo_url {
+    width: 3rem;
+}
+th{
+    color:#8896b6 !important;
+    font-size:9px !important;
+    font-weight: 600 !important;
+}
+td.name{
+color:#5c5b69 !important;
+font-size:11px !important;
+font-weight:bold !important;
+}
+td.address{
+    color:#a5a7b3 !important;
+font-size:10px !important;
+font-weight:bold !important;
+}

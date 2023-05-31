@@ -1,0 +1,42 @@
+<!-- display payment history -->
+<div class="row ml-4 mb-3 mr-4">
+  <div class="col bg-white">
+    <p class="text-capitalize h5 ml-3 mt-4 mb-4">{{pageTitle}}</p>
+
+    <!-- seperator or line -->
+    <div class="line"></div>
+
+    <div class="col">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="text-capitalize">#</th>
+            <th scope="col" class="text-capitalize">total</th>
+            <th scope="col" class="text-capitalize">admin fee</th>
+            <th scope="col" class="text-capitalize">barber fee <br /> <small>(includes stripe fee)</small></th>
+            <th scope="col" class="text-capitalize">date</th>
+            <th scope="col" class="text-capitalize">view</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="paymentHistory">
+          <tr *ngFor="let payment of paymentHistory">
+            <th scope="row" class="text-capitalize pay_id">{{payment.id}}</th>
+            <td class="text-capitalize">{{payment.total_amount | currency:'GBP'}}</td>
+            <td class="text-capitalize">{{payment.admin_fee | currency:'GBP'}}</td>
+            <td class="text-capitalize">{{payment.final_amount | currency:'GBP'}}</td>
+            <td class="text-capitalize">{{payment.created_at * 1000 | date:'dd/MM/yy'}}</td>
+            <td class="text-capitalize"><a routerLink="/saloon/sales/{{payment.id}}" class="btn btn-link text-capitalize">link</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- display barbers list pagination -->
+      <div class="row mt-5" *ngIf="totalItems">
+        <div class="col">
+          <app-pagination [totalItems]="totalItems" [currentPage]="currentPage" (childEvent)="getSaloonPayments ($event)"></app-pagination>
+        </div>
+      </div>  <!-- display barbers list pagination -->
+
+    </div>
+  </div>
+</div>

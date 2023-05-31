@@ -1,0 +1,23 @@
+.avatar {
+    max-width: 3rem;
+}
+th{
+    color:#8d9aba;
+    font-size:9px;
+    font-weight: bold;
+}
+td{
+    color:#c7c7cf;
+    font-size:11px;
+    font-weight: bold;
+}
+span{
+    color:#807f8b;
+    font-size:11px;
+    font-weight: bold;
+}
+p{
+    color:#555861 !important;
+    font-weight:bold;
+    font-size:12px;
+}

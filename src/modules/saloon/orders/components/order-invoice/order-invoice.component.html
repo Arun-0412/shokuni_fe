@@ -1,0 +1,102 @@
+<div class="container-fluid" >
+    <!-- display page title -->
+    <div class="row m-2">
+        <div class="col">
+            <h6 class="text-capitalize h3">{{pageTitle}}</h6>
+        </div>
+        <div class="col text-right">
+            <span class="btn btn-transparent btn-sm pl-4 pr-4" (click)="downloadInvoice ()">Export To PDF</span>
+        </div>
+    </div>  <!-- End of Row Class---->
+
+    <!-- this div is only to make PDF. Do not add any class or property over it -->
+    <div id="contentToConvert">
+        <!-- display Invoice Detail -->
+    <div class="row mt-3 mr-3 ml-3 border-right border-left border-top shadow">
+            <div class="col p-5 bg-white">
+                <!-- display header of the invoice -->
+                <div class="row">
+                    <div class="col">
+                        <span class="h4 text-uppercase"><b>{{pageTitle}}</b></span>
+                    </div>
+                    <div class="col text-right">
+                        <img [src]="invoiceDetail?.saloon?.logo_url" [alt]="invoiceDetail?.saloon?.name" class="saloon-logo"/>
+                        <div class="d-flex p-2 text-muted justify-content-end">{{ invoiceDetail?.saloon?.address }}, {{ invoiceDetail?.saloon?.postal_code }}</div>
+                    </div>
+                </div>  <!-- end of display header of the invoice -->
+    
+                <!-- seperator or line -->
+                <div class="line mt-5 mb-5"></div>
+    
+                <!-- display Invoice short detail -->
+                <div class="row mb-5">
+                    <div class="col">
+                        <div class="font-weight-bold text-uppercase text-sm"><p>date</p></div>
+                        <!-- display date of invoice -->
+                        <div class="font-weight-bold text-secondary text-sm">{{ invoiceDetail?.created_at * 1000 | date: 'MMM dd, y' }}</div>
+                    </div>
+                    <div class="col">
+                        <div class="font-weight-bold text-uppercase text-sm"><p>invoice no</p></div>
+                    </div>
+                    <div class="col">
+                        <div class="font-weight-bold text-uppercase text-sm"><p>invoice to</p></div>
+                    </div>
+                </div>
+    
+                <!-- display the services detail belongs to invoices -->
+                <div class="row">
+                    <div class="col">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-sm text-uppercase text-secondary">service/product</th>
+                                        <th scope="col" class="text-sm text-uppercase text-secondary">time <small>(in minuits)</small></th>
+                                        <th scope="col" class="text-sm text-uppercase text-secondary">type</th>
+                                        <th scope="col" class="text-sm text-uppercase text-secondary">amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- display all services detail -->
+                                    <tr *ngFor="let service of invoiceDetail?.services">
+                                        <td class="text-sm text-capitalize font-weight-bold">{{ service?.name }}</td>
+                                        <td class="text-sm  text-capitalize font-weight-bold">{{ service?.time }}</td>
+                                        <td class="text-sm text-capitalize font-weight-bold">{{ service?.service_type }}</td>
+                                        <td class="text-sm text-capitalize font-weight-bold text-danger">{{ service?.amount | currency:'GBP' }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- display bank detail of the invoice -->
+        <div class="row mb-3 ml-3 mr-3 border-right border-left border-bottom">
+            <div class="col p-5 bg-gray">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-sm text-uppercase text-secondary">bank</th>
+                                <!-- <th scope="col" class="text-sm text-uppercase text-secondary">acc no.</th> -->
+                                <th scope="col" class="text-sm text-uppercase text-secondary">due date</th>
+                                <th scope="col" class="text-sm text-uppercase text-secondary">total amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- display all services detail -->
+                            <tr>
+                                <td class="text-sm  text-capitalize font-weight-bold">barkley bank</td>
+                                <!-- <td class="text-sm  text-capitalize font-weight-bold">123456789</td> -->
+                                <td class="text-sm  text-capitalize font-weight-bold">{{ invoiceDetail?.created_at * 1000 | date: 'MMM dd, y' }}</td>
+                                <td class="font_text text-capitalize font-weight-bold text-danger">{{ invoiceDetail?.final_amount | currency:'GBP' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

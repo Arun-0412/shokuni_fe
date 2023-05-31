@@ -1,0 +1,42 @@
+.no-flex {
+    display: block;
+}
+
+.avatar {
+    width: 4rem;
+}
+
+.saloon-logo {
+    width:11rem;
+}
+th{
+    font-size:10px !important;
+    color:#8896b8 !important;
+}
+td{
+    color:#b3b3bc !important;
+    font-size:12px !important;
+    font-weight:500 !important;
+}
+.modal_span{
+    display:block !important;
+    color: #4f4f57 !important;
+    font-size:14px !important;
+    font-weight: 500 !important;
+}
+.span2_modal{
+    display:block !important;
+    font-size:7px !important;
+    color:#bebdc7 !important;
+}
+.text-danger {
+    color: #c06c71 !important;
+}
+.modal-content{
+    width:85% !important;
+}
+a.saloon_name{
+    color:#b3b3bc !important;
+    font-size:12px !important;
+    font-weight:500 !important;
+}

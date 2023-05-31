@@ -1,0 +1,70 @@
+<div class="container-fluid">
+
+  <div class="sub-header">
+    <div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-3">
+        <h4 class="h4_tag">Dashboard</h4>
+      </div>
+   
+      <div class="col-md-9 col-sm-9 col-xs-9" style="margin-left: -1%;">
+        <div class="d-flex flex-row justify-content-end">
+          <div class="bg-white px-5 py-2" *ngIf="displayAddSaloon">
+            <h5>Do you want to add Saloon?</h5>
+            <a class="col text-right mt-3" (click)="redirect()">
+              <span class="btn text-capitalize btn-transpert">Yes</span>
+            </a>
+          </div>&nbsp;&nbsp;&nbsp;
+          <div>
+            <p class="datetex">Today: <span class="dd">{{ selectedDate | date:'MMM dd' }}</span>
+              <my-date-picker class="dropicon" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)">
+              </my-date-picker>
+            </p>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>
+
+  <app-saloon-short-detail [saloonId]="saloonId"></app-saloon-short-detail>
+
+  <div class="row shadow m-3 bg-white">
+    <div class="col">
+      <div class="row p-4">
+        <div class="col">
+          <p class="text-dark text-capitalize">Total Takings</p>
+          <p class="text-black-50 text-capitalize">All Customs Value</p>
+        </div>
+        <div class="col">
+          <p class="text-danger font-weight-bold mt-3">{{ barberPerformanceData?.total_collection | currency:'GBP' }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row p-4">
+        <div class="col">
+          <p class="text-dark text-capitalize">Cuts</p>
+          <p class="text-black-50 text-capitalize">Total Number of Cuts</p>
+        </div>
+        <div class="col">
+          <p class="text-danger font-weight-bold mt-3">{{ barberPerformanceData?.total_cuts }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row p-4">
+        <div class="col">
+          <p class="text-dark text-capitalize">Average Cut Time</p>
+          <p class="text-black-50 text-capitalize">Time Spent On Cuts</p>
+        </div>
+        <div class="col">
+          <p class="text-danger font-weight-bold mt-3">{{ calculateAvgCutTime
+            (barberPerformanceData?.total_activity_time_in_sec,barberPerformanceData?.total_cuts) }}<sub>m</sub></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- display forumn screen -->
+  <app-barber-join-discussion></app-barber-join-discussion>
+</div>

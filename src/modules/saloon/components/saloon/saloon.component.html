@@ -1,0 +1,259 @@
+<div class="container-fluid">
+  <!-- display page title -->
+  <div class="row">
+    <div class="col">
+      <p class="text-capitalize h3 ml-4">{{pageTitle}}</p>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-12 col-xs-12 col-md-7 col-xl-7 col-lg-7 bg-white ml-5 mb-5 mt-4 pb-5">
+      <p class="text-capitalize h5 ml-3 mt-4 mb-4">{{subTitle}}</p>
+
+      <!-- seperator or line -->
+      <div class="line"></div>
+
+      <div class="col-xs-12 col-sm-12 col-lg-8 col-xl-8 col-md-8 m-3">
+
+        <!-- Design Saloon update form -->
+        <form [formGroup]="saloonForm" novalidate>
+          <div class="form-group">
+            <label class="h6 required text-capitalize">name:</label>
+            <input type="text" class="form-control" appTrimInput required formControlName="name" maxlength="255"
+              autocomplete="off" />
+            <show-errors [control]="saloonForm.controls.name"></show-errors>
+          </div>
+
+          <div class="form-group">
+            <label class="h6 text-uppercase">gb-vat #:</label>
+            <input type="text" class="form-control" appTrimInput formControlName="vat_number" maxlength="255"
+              autocomplete="off" />
+            <show-errors [control]="saloonForm.controls.vat_number"></show-errors>
+          </div>
+
+          <div class="form-group">
+            <label class="h6 required text-capitalize">company #</label>
+            <input type="text" class="form-control" appTrimInput required formControlName="company_number"
+              maxlength="255" autocomplete="off" />
+            <show-errors [control]="saloonForm.controls.company_number"></show-errors>
+          </div>
+
+          <div class="form-group">
+            <label class="h6 text-capitalize">website:</label>
+            <input type="text" class="form-control" appTrimInput formControlName="website_url" maxlength="255"
+              autocomplete="off" />
+            <show-errors [control]="saloonForm.controls.website_url"></show-errors>
+          </div>
+
+          <div class="form-group">
+            <label class="h6 required text-capitalize">phone number:</label>
+            <input type="text" class="form-control" appTrimInput appNumberOnly required formControlName="contact_number"
+              maxlength="15" autocomplete="off" />
+            <show-errors [control]="saloonForm.controls.contact_number"></show-errors>
+          </div>
+
+          <div class="form-group">
+            <label class="h6 required text-capitalize">Latitude:</label>
+            <input type="number" class="form-control" appTrimInput required formControlName="lat" maxlength="15"
+              autocomplete="off" />
+            <show-errors [control]="saloonForm.controls.lat"></show-errors>
+          </div>
+
+          <div class="form-group">
+            <label class="h6 required text-capitalize">Longitude:</label>
+            <input type="number" class="form-control" appTrimInput required formControlName="lng" maxlength="15"
+              autocomplete="off" />
+            <show-errors [control]="saloonForm.controls.lng"></show-errors>
+          </div>
+
+          <!-- display saloon address in google-map format -->
+          <div *ngIf="!updateAddress" class="form-group">
+            <label class="h6 required text-capitalize">address:</label>
+            <div class="media">
+              <div class="map mr-3">
+                <agm-map *ngIf="lat && lng" data-toggle="modal" data-target="#googleMapAddressModal" [latitude]="lat"
+                  [longitude]="lng" [disableDoubleClickZoom]="true" [mapDraggable]="false" [usePanning]="true"
+                  [panControl]="true" [zoomControl]="false" [streetViewControl]="false">
+                  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                </agm-map>
+              </div>
+              <div class="media-body">
+                {{saloonDetail?.address + ', ' + saloonDetail?.postal_code}}
+                <span class="btn btn-shokuni text-capitalize ml-2" (click)="toggleAddressFields()">change</span>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="updateAddress" class="form-group">
+            <label class="h6 required text-capitalize">address:</label>
+            <input type="text" class="form-control" formControlName="address" maxlength="255" autocomplete="off"
+              appTrimInput required />
+            <show-errors [control]="saloonForm.controls.address"></show-errors>
+          </div>
+
+          <div *ngIf="updateAddress" class="form-group">
+            <div class="row">
+              <div class="col">
+                <label class="h6 required text-capitalize">postcode:</label>
+                <input type="text" class="form-control" appTrimInput required formControlName="postal_code"
+                  maxlength="255" autocomplete="off" />
+                <show-errors [control]="saloonForm.controls.postal_code"></show-errors>
+
+                <!-- fields belongs to Saloon address lat/lng -->
+                <input type="hidden" class="form-control" formControlName="lat" />
+                <input type="hidden" class="form-control" formControlName="lng" />
+                <show-errors [control]="saloonForm.controls.lat"></show-errors>
+                <show-errors [control]="saloonForm.controls.lng"></show-errors>
+              </div>
+              <div class="col">
+                <label class="h6 required text-capitalize">country:</label>
+                <select class="form-control" formControlName="country_id" *ngIf="countries">
+                  <!-- <option [selected]="true" disabled>Select Country</option> -->
+                  <option *ngFor="let country of countries" [value]="country.id" class="text-capitalize"
+                    [selected]="checkSaloonCountry (country.id)">{{country.name}}</option>
+                </select>
+                <show-errors [control]="saloonForm.controls.country_id"></show-errors>
+              </div>
+            </div>
+          </div>
+
+          <!-- display saloon logo -->
+          <div class="form-group">
+            <label class="h6 text-capitalize">shop logo</label>
+            <input type="hidden" formControlName="logo" />
+            <div class="media">
+              <img [src]="saloonLogo" class="avatar mr-4" />
+              <div class="media-body">
+                <div class="text-capitalize mt-4">upload new logo</div>
+                <label class="btn-bs-file btn btn-shokuni mt-2">
+                  Upload
+                  <input type="file" (change)="uploadImg ($event)" />
+                </label>
+              </div>
+            </div>
+            <show-errors [control]="saloonForm.controls.logo"></show-errors>
+          </div>
+
+          <!-- design for opening times -->
+          <div class="form-group">
+            <label class="h6 required text-capitalize">opening times:</label>
+            <ul class="list-group list-group-flush" formGroupName="schedule">
+              <li class="list-group-item no-border">
+                <div class="row">
+                  <div class="col h6 text-capitalize">day</div>
+                  <div class="col h6 text-capitalize text-right">open</div>
+                </div>
+              </li>
+
+              <!-- Design dynamic timing forms -->
+              <li *ngFor="let schedule of saloonForm?.controls?.schedule?.controls;let i = index" [attr.data-index]="i"
+                class="list-group-item" [formGroupName]="i">
+                <div class="row">
+                  <div class="col h6 text-capitalize text-left">{{schedule?.value?.day}}</div>
+                  <div class="col h6 text-capitalize text-right">
+                    <input type="checkbox"
+                      [checked]="(schedule.value.start_time && schedule.value.end_time) ? true : false"
+                      data-toggle="collapse" [attr.data-target]="getDataTarget(schedule?.value?.day)"
+                      [attr.aria-expanded]="true" [attr.aria-controls]="getDataTarget(schedule.value.day, false)" />
+                  </div>
+                </div>
+
+                <!-- display time input fields -->
+                <div class="collapse" [ngClass]="(schedule.value.start_time && schedule.value.end_time) ? 'show' : ''"
+                  id="data-target{{schedule.value.day}}">
+                  <div class="form-row">
+                    <div class="col">
+                      <!-- <input type="time" formControlName="start_time" class="form-control text-left" placeholder="Opening Time" maxlength="8"/> -->
+                      <input atp-time-picker formControlName="start_time" readonly class="form-control text-left"
+                        placeholder="Opening Time" maxlength="8" />
+                      <show-errors [control]="start_time"></show-errors>
+                    </div>
+                    <div class="col-1 mt-2 text-center">
+                      <i class="fa fa-arrow-right"></i>
+                    </div>
+                    <div class="col">
+                      <!-- <input type="time" formControlName="end_time" class="form-control" placeholder="Closing Time" autocomplete="off" maxlength="8"/> -->
+                      <input atp-time-picker formControlName="end_time" readonly class="form-control text-left"
+                        placeholder="Closing Time" maxlength="8" />
+                      <show-errors [control]="end_time"></show-errors>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <small><span class="required"></span> indicates required</small>
+          <!-- Submit Saloon form -->
+          <div class="text-left mt-2">
+            <button [disabled]="!saloonForm.valid" (click)="submitSaloon (saloonForm)"
+              class="btn btn-shokuni text-capitalize mr-3">save</button>
+            <button type="button" class="btn btn-transparent text-capitalize" (click)="redirect()">cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right Sidebar links -->
+    <div class="col bg-white ml-3 mb-5 mr-3 mt-4 pb-5 height-15">
+      <p class="text-capitalize h5 ml-3 mt-4 mb-4">quick actions</p>
+
+      <!-- seperator or line -->
+      <div class="line"></div>
+
+      <div class="row">
+        <div class="col border-right text-center">
+          <a routerLink="/saloon/{{ saloonDetail?.id }}/dashboard">
+            <div class="dashboard-icon no-repeat-img p-3 mt-4 icon"></div>
+            <span class="quick_action_item text-capitalize">dashboard</span>
+          </a>
+        </div>
+        <div class="col border-right text-center">
+          <a routerLink="/saloon/{{ saloonDetail?.id }}/barbers">
+            <div class="manage-barber-icon no-repeat-img p-3 mt-4 icon"></div>
+            <span class="quick_action_item text-capitalize">Manage Barber</span>
+          </a>
+        </div>
+        <div class="col border-right text-center">
+          <a routerLink="/admin/sales/{{ saloonDetail?.id }}">
+            <div class="sales-icon no-repeat-img p-3 mt-4 icon"></div>
+            <span class="quick_action_item text-capitalize">Manage Sales</span>
+          </a>
+        </div>
+        <div class="col text-center">
+          <a routerLink="/saloon/{{ saloonDetail?.id }}/products">
+            <div class="products-icon no-repeat-img p-3 mt-4 icon"></div>
+            <span class="quick_action_item text-capitalize">products</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- modal to display  -->
+<div class="modal fade" id="googleMapAddressModal" tabindex="-1" role="dialog"
+  aria-labelledby="googleMapAddressModalTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="googleMapAddressModalTitle">{{saloonDetail?.address + ', ' +
+          saloonDetail?.postal_code}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="16">
+          <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        </agm-map>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

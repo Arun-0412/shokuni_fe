@@ -1,0 +1,32 @@
+<div class="row m-3">
+  <div class="col-4 bg-white shadow">
+    <div class="text-capitalize display-5 text-dark">{{ getDate() | date:'EEEE' }}</div>
+    <div class="text-capitalize text-muted">{{ getDate () | date:'dd' }}<sup>{{ nth (getDate () | date:'dd') }}</sup> {{ getDate () | date:'MMMM' }}</div>
+    <div class="text-black-50 mt-5">{{ getDate () | date:'hh:mm' }}<sub>{{ lowercase (getDate () | date:'a') }}</sub></div>
+  </div>
+
+  <div class="col ml-3">
+    <div class="row shadow bg-white">
+      <div class="col">
+        <img [src]="saloonDetail?.logo_url" class="img-thumbnail mt-3 avatar mt-3" style="height: 9rem;">
+        <div class="mt-1 ml-2 text-dark h5">{{saloonDetail?.name}}</div>
+      </div>
+      
+      <div class="col mt-3">
+        <div class="text-black-50 small">Shop Name</div>
+        <div class="text-dark h6">{{saloonDetail?.name}}</div>
+        <div class="text-black-50 mt-5 small">Shop Address</div>
+        <div class="text-dark h6 mb-5">{{saloonDetail?.address}}</div>
+      </div>
+      
+      <div class="col mt-3">
+        <div class="text-black-50 small">Opening Times Today</div>
+        <p class="openingtimefrom">
+          {{ timeToDate (getOpeningTime (saloonDetail?.saloon_schedule?.schedule)?.start_time) | date: 'hh:mm' }}<sub>{{ lowercase (timeToDate (getOpeningTime (saloonDetail?.saloon_schedule?.schedule)?.start_time) | date:'a') }}</sub>
+          <i class="fa fa-arrow-right mr-3 ml-3" aria-hidden="true"></i>
+          {{ timeToDate (getOpeningTime (saloonDetail?.saloon_schedule?.schedule)?.end_time) | date: 'hh:mm' }} <sub>{{ lowercase (timeToDate (getOpeningTime (saloonDetail?.saloon_schedule?.schedule)?.end_time) | date:'a') }}</sub>
+        </p> 
+      </div>
+    </div>
+  </div>             
+</div>

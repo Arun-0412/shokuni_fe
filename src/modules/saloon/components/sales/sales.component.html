@@ -1,0 +1,21 @@
+<div class="container-fluid" >
+  <!-- display page title -->
+  <div class="row">
+    <div class="col">
+      <p class="text-capitalize h3 ml-4">{{pageTitle}}</p>
+    </div>
+  </div>  <!-- End of Row Class---->
+  
+  <!-- display sales summary report -->
+  <app-sales-summary [saloonId]="saloonId"></app-sales-summary>
+
+  <!-- display number of ordes entries -->
+  <app-entries [saloonId]="saloonId"></app-entries>
+
+  <!-- display payment history -->
+  <app-payment-history [saloonId]="saloonId"></app-payment-history>
+
+  <!-- display payment information change screen -->
+  <app-payment-info [saloonId]="saloonId"></app-payment-info>
+
+</div>  <!--End of container-fluid--->

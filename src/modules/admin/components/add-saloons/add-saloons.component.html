@@ -1,0 +1,169 @@
+<div class="container-fluid">
+  <!-- display page title -->
+  <!-- <div class="row">
+    <div class="col">
+      <p class="text-capitalize h3 ml-4">{{pageTitle}}</p>
+    </div>
+  </div> -->
+
+
+  <div class="row bg-white mb-5 ml-4 mr-5">
+    <div class="col-md-12">
+      <p class="text-capitalize h5 ml-5 mt-5 mb-4 sub_title">{{subTitle}}</p>
+      <!-- seperator or line -->
+      <div class="line ml-5 mr-5"></div>
+      <!-- change-password form -->
+      <form class="row ml-4 mr-4 mb-5 mt-5" [formGroup]="saloonForm" novalidate>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="h6 required">Saloon Name</label>
+            <input type="text" class="form-control no-side-border" appTrimInput required formControlName="name"
+              maxlength="20" autocomplete="off">
+            <show-errors [control]="saloonForm.controls.name"></show-errors>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="h6 required">Standard Price</label>
+            <input type="text" class="form-control no-side-border" appTrimInput required
+              formControlName="standard_price" maxlength="20" autocomplete="off">
+            <show-errors [control]="saloonForm.controls.standard_price"></show-errors>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="h6 required">Postal Code</label>
+            <input type="text" class="form-control no-side-border" appTrimInput required formControlName="postal_code"
+              maxlength="8" autocomplete="off">
+            <show-errors [control]="saloonForm.controls.postal_code"></show-errors>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="h6 required">Latitude</label>
+            <input type="text" class="form-control no-side-border" appTrimInput required formControlName="lat"
+              maxlength="20" autocomplete="off">
+            <show-errors [control]="saloonForm.controls.lat"></show-errors>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="h6 required">Longitude</label>
+            <input type="text" class="form-control no-side-border" appTrimInput required formControlName="lng"
+              maxlength="20" autocomplete="off">
+            <show-errors [control]="saloonForm.controls.lng"></show-errors>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="h6">Vat Number</label>
+            <input type="text" class="form-control no-side-border" appTrimInput formControlName="vat_number"
+              maxlength="20" autocomplete="off">
+            <show-errors [control]="saloonForm.controls.vat_number"></show-errors>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="h6">Company Number</label>
+            <input type="text" class="form-control no-side-border" appTrimInput formControlName="company_number"
+              maxlength="20" autocomplete="off">
+            <show-errors [control]="saloonForm.controls.company_number"></show-errors>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="h6 required text-capitalize">Country</label>
+            <select class="form-control" *ngIf="countries" formControlName="country_id"
+              (change)="updateCountry($event.target)">
+              <option *ngFor="let country of countries.data" [value]="country.id" class="text-capitalize">
+                {{country.name}}</option>
+            </select>
+            <show-errors [control]="saloonForm.controls.country_id"></show-errors>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="h6 required">Logo Image</label>
+            <input type="file" class="form-control no-side-border" appTrimInput required formControlName="logo_url"
+              accept="image/*" (change)="logoUpload($event)">
+            <show-errors [control]="saloonForm.controls.logo_url"></show-errors>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="h6 required">Header Image</label>
+            <input type="file" class="form-control no-side-border" appTrimInput required formControlName="header_url"
+              accept="image/*" (change)="logoheaderUpload($event)">
+            <show-errors [control]="saloonForm.controls.header_url"></show-errors>
+          </div>
+        </div>
+
+        <!-- <div class="col-md-6">
+          <div class="form-group">
+            <label class="h6 required">Barber First Name</label>
+            <input type="text" class="form-control no-side-border" appTrimInput required formControlName="first_name"
+              maxlength="20" autocomplete="off">
+            <show-errors [control]="saloonForm.controls.first_name"></show-errors>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="h6 required">Barber Last Name</label>
+            <input type="text" class="form-control no-side-border" appTrimInput required formControlName="last_name"
+              maxlength="20" autocomplete="off">
+            <show-errors [control]="saloonForm.controls.last_name"></show-errors>
+          </div>
+        </div> -->
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="h6 required">Contact Number</label>
+            <input type="text" class="form-control no-side-border" appTrimInput required
+              formControlName="contact_number" maxlength="20" autocomplete="off">
+            <show-errors [control]="saloonForm.controls.contact_number"></show-errors>
+          </div>
+        </div>
+
+        <!-- <div class="col-md-6">
+          <div class="form-group">
+            <label class="h6 required">Email</label>
+            <input type="email" class="form-control no-side-border" appTrimInput required formControlName="email"
+              maxlength="50" autocomplete="off" readonly>
+            <show-errors [control]="saloonForm.controls.email"></show-errors>
+          </div>
+        </div> -->
+
+        <div class="col-md-6">
+          <div class="form-group mb-5">
+            <label class="h6 required">Address</label>
+            <textarea class="form-control no-side-border" appTrimInput required formControlName="address"
+              autocomplete="off"></textarea>
+            <show-errors [control]="saloonForm.controls.address"></show-errors>
+          </div>
+        </div>
+
+
+
+
+        <div class="col-md-12">
+          <small><span class="required"></span> indicates required</small>
+          <div class="text-left mt-2">
+            <button [disabled]="!saloonForm.valid" (click)="submitAddSaloon (saloonForm)"
+              class="btn btn-shokuni text-capitalize mr-3">save</button>
+            <button type="reset" (click)="redirect()" class="btn btn-transparent text-capitalize">cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

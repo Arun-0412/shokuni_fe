@@ -1,0 +1,91 @@
+.datetex {
+    width: 105px;
+    color: #abacb8;
+    font-size: 10px;
+    padding-left: 10px; 
+    text-align:left;
+    background: white;
+    border-radius: 15px;
+    line-height: 30px;
+    float: right;
+}
+
+.dropicon {
+    float: right;
+    margin-right: 2px;
+    height: 35px;
+    width: 35px;
+    line-height: 0;
+    padding-left: 11px;
+    margin-top: -31px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.avatar {
+    width: 4rem;
+}
+
+.view-icon {
+    background-image: url(../../../../assets/images/admin-icons/view.svg);
+}
+
+.icon {
+    background-size: 1.5rem;
+}
+
+.backgroud-no-repeat {
+    background-repeat: no-repeat;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+  
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.hover-dark:hover {
+    background-color: #cccccc;
+}
+/* .drop_icon{ position: relative;} */
+.drop_icon:before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    right: -3px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 8px solid #f9f9f9;
+}
+th{
+    color:#8a96b2;
+    font-size:11px;
+    font-weight: bold !important;
+}
+.modal-content{
+    width: 87% !important;
+    margin: 0 auto !important;
+}
+.saloon_name{
+    color:#bdbdc7 !important;
+    font-size:12px !important;
+    font-weight:bold !important;
+}

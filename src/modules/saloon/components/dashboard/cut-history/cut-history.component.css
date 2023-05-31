@@ -1,0 +1,27 @@
+.text-sm {
+    font-size: 12px;
+}
+
+.avatar {
+    width: 3rem;
+}
+p{
+    color:#595b64 !important;
+    font-size:14px !important;
+    font-weight:600 !important;
+}
+th{
+    color:#8896b7 !important;
+    font-size:10px !important;
+    font-weight:bold !important;
+}
+.cust_name{
+    color:#8a8994 !important;
+    font-size:11px !important;
+    font-weight: bold !important;
+}
+td{
+    color:#c3c3cb !important;
+    font-size:11px !important;
+    font-weight: 600 !important;
+}

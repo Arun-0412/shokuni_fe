@@ -1,0 +1,95 @@
+<!-- profile div -->
+<div class="row bg-white mb-5 ml-4 mr-5">
+    <div class="col">
+        <div class="d-flex flex-row">
+            <p class="text-capitalize h5 ml-5 my-4 edit_profile"
+                [ngClass]="userType ? 'btn btn-primary text-white' : 'pt-2'" (click)="changeUser('profile')">edit
+                profile</p> &nbsp;&nbsp;&nbsp;
+            <p class="text-capitalize h5 ml-5 my-4 edit_profile "
+                [ngClass]="!userType ? 'btn btn-primary text-white' : 'pt-2'" (click)="changeUser('saloon')"
+                *ngIf="!hideAgent">add saloon
+            </p>
+        </div>
+        <!-- seperator or line -->
+        <div class="line"></div>
+
+        <div class="col-xs-12 col-sm-12 col-lg-5 col-xl-5 col-md-5 m-4" *ngIf="userType">
+            <!-- profile-update form -->
+            <form [formGroup]="profileForm" novalidate>
+                <div class="form-group">
+                    <label class="h6 required text-capitalize">first name</label>
+                    <input type="text" class="form-control" appTrimInput required formControlName="first_name"
+                        maxlength="75" autocomplete="off">
+                    <show-errors [control]="profileForm.controls.first_name"></show-errors>
+                </div>
+                <div class="form-group">
+                    <label class="h6 required text-capitalize">last name</label>
+                    <input type="text" class="form-control" appTrimInput required formControlName="last_name"
+                        autocomplete="off" maxlength="75">
+                    <show-errors [control]="profileForm.controls.last_name"></show-errors>
+                </div>
+                <div class="form-group">
+                    <label class="h6 required text-capitalize">email</label>
+                    <input type="text" class="form-control" appTrimInput required formControlName="email"
+                        autocomplete="off" maxlength="255">
+                    <show-errors [control]="profileForm.controls.email"></show-errors>
+
+                    <small class="form-text text-muted"><span class="text-warning mr-2 email_verfid">Your email has
+                            not
+                            been yet verified!</span><span class="text-shokuni text-capitalize">resend
+                            verification</span></small>
+                </div>
+                <div class="form-group">
+                    <label class="h6 text-capitalize">profile photo</label>
+                    <input type="hidden" formControlName="image" />
+                    <div class="media">
+                        <img [src]="avatar" class="avatar mr-4" />
+                        <div class="media-body">
+                            <div class="text-capitalize mt-4 upload_img">upload new profile picture</div>
+                            <label class="btn-bs-file btn btn-shokuni mt-2">
+                                Upload
+                                <input type="file" (change)="uploadImg ($event)" />
+                            </label>
+                        </div>
+                    </div>
+                    <show-errors [control]="profileForm.controls.image"></show-errors>
+                </div>
+                <div class="form-group">
+                    <label class="h6 required text-capitalize">Country</label>
+                    <select class="form-control" *ngIf="countries" formControlName="country_id"
+                        (change)="updateCountry($event.target)">
+                        <option *ngFor="let country of countries" [value]="country.id" class="text-capitalize"
+                            [attr.phonecode]="country.phonecode" [selected]="selectUserCountry(country.id)">
+                            {{country.name}}</option>
+                    </select>
+                    <show-errors [control]="profileForm.controls.country_id"></show-errors>
+                </div>
+                <div class="form-group mb-5">
+                    <label class="h6 required text-capitalize">Mobile Number</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white no-right-border">{{countryPhoneCode}}</span>
+                        </div>
+                        <input type="text" class="form-control no-left-border" appTrimInput appNumberOnly required
+                            formControlName="number" autocomplete="off" maxlength="15" aria-describedby="basic-addon3">
+                    </div>
+                    <show-errors [control]="profileForm.controls.number"></show-errors>
+
+                    <small class="form-text text-muted"><span class="text-warning mr-2 email_verfid">Your mobile has
+                            not
+                            been yet verified!</span><span class="text-shokuni text-capitalize">Resend
+                            verification</span></small>
+                </div>
+                <small class="indicates_req"><span class="required"></span> indicates required</small>
+                <div class="text-left mt-2">
+                    <button [disabled]="!profileForm.valid" (click)="submitProfileUpdate (profileForm)"
+                        class="btn btn-shokuni text-capitalize mr-3 save_btn">save</button>
+                    <button type="reset" class="btn btn-transparent text-capitalize save_btn">cancel</button>
+                </div>
+            </form>
+
+        </div>
+        <app-add-saloons *ngIf="!userType && !hideAgent"></app-add-saloons>
+
+    </div>
+</div>

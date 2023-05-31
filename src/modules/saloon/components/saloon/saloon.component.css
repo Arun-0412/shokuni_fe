@@ -1,0 +1,105 @@
+.avatar {
+    width: 6rem;
+}
+
+.btn-bs-file{
+    position:relative;
+}
+
+.btn-bs-file input[type="file"]{
+    position: absolute;
+    top: -9999999;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    width:0;
+    height:0;
+    outline: none;
+    cursor: inherit;
+}
+.h6{
+    color:#47484d !important;
+    font-size:11px !important;
+}
+.map agm-map {
+    height: 6rem;
+    width: 8rem;
+}
+
+.modal-body agm-map {
+    height: 20rem;
+    width: 100%;
+}
+
+.list-group-flush li:first-child {
+    border: none;
+}
+
+.list-group-flush li {
+    border-style: dashed; 
+}
+
+.height-15 {
+    max-height: 15rem;
+}
+.form-control {
+    display: block;
+    width: 100%;
+     height: calc(2.25rem + 2px); 
+   /*   height: 23px; */
+    padding: .375rem .75rem;
+    font-size: 12px;
+     line-height: 1.5; 
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.img_src{
+    width: 20px;
+    height: 25px;
+    margin: 43px 7px 5px 43px;
+    fill:#b9b8c0 !important;
+}
+.quick_action_item{
+    color:#b9b8c0 !important;
+    font-size:10px !important;
+    font-weight:500 !important;
+}
+.svg {
+    filter: invert(.5);
+  }
+
+.dashboard-icon {
+    background-image: url(../../../../assets/images/dashboard.svg);
+    background-position: center;
+}
+
+.manage-barber-icon {
+    background-image: url(../../../../assets/images/manage-barber.svg);
+    background-position: center;
+}
+
+.no-repeat-img {
+    background-repeat: no-repeat;
+}
+
+.icon {
+    fill:#b9b8c0 !important;
+    filter: invert(.5);
+}
+
+.products-icon {
+    background-image: url(../../../../assets/images/products.svg);
+    background-position: center;
+}
+
+.sales-icon {
+    background-image: url(../../../../assets/images/admin-icons/accounting.svg);
+    background-position: center;
+}
+
+.ml-5 {
+    margin-left: 3.8rem!important;
+}

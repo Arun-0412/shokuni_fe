@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <!-- display page title -->
+  <div class="row mb-4">
+      <div class="col">
+      <p class="text-capitalize h3 ml-4">{{pageTitle}}</p>
+      </div>
+  </div>
+
+  <div class="row ml-4">
+    <!-- display order of the customer -->
+    <div *ngFor="let order of customerOrders;" class="card col-sm-12 col-xs-12 col-md-6 col-lg-4 col-xl-4 mb-4 mr-4">
+      <div class="card-body">
+        <!-- display saloon name and it's logo -->
+        <div class="media mb-5">
+          <img class="mr-3 saloon-logo" [src]="order.saloon_logo_url" [alt]="order.saloon_name">
+          <div class="media-body">
+            <h5 class="color-saloon-name text-capitalize card-title">{{order.saloon_name}}</h5>
+          </div>
+        </div>
+        <div class="card-text">
+          xxxxxxxxxxxxxxxxx
+          <!-- Display order detail -->
+          <div class="table-responsive">
+              <table class="table">
+                <thead class="mb-5">
+                  <tr>
+                    <th scope="col" class="text-left text-capitalize">product</th>
+                    <th scope="col" class="text-capitalize text-right">amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- get main service name -->
+                  <tr class="border-dashed-bottom">
+                    <td class="text-capitalize product_name_class">{{order.service.name}}</td>
+                    <td class="text-capitalize text-right product_amount_class">{{order.service.amount | currency:'GBP'}}</td>
+                  </tr>
+      
+                  <!-- dislay additional services if taken -->
+                  <tr *ngFor="let ES of order.additional_extras;" class="border-dashed-bottom">
+                    <td class="text-capitalize product_name_class">{{ES.name}}</td>
+                    <td class="text-capitalize text-right product_amount_class">{{ES.amount | currency:'GBP'}}</td>
+                  </tr>
+      
+                  <!-- display export button and total amount paid -->
+                  <tr>
+                    <td class="text-capitalize" (click)="exportOrder(order)">
+                      <span class="btn btn-default text-capitalize btn-export">export</span>
+                    </td>
+                    <td class="text-capitalize text-right padding_total_amount">
+                      <span class="text-capitalize text-order-total mr-4">total</span>
+                      <span class="product_amount_class">{{order.transaction.final_amount | currency:'GBP'}}</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5" *ngIf="totalItems">
+    <div class="col">
+      <!--Pagination -->
+      <app-pagination [totalItems]="totalItems" [currentPage]="currentPage" (childEvent)="getCustomerOrders ($event)"></app-pagination>
+    </div>
+  </div>
+
+</div>

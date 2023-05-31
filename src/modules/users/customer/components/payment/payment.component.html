@@ -1,0 +1,44 @@
+<div class="container-fluid">
+    <!-- display page title -->
+    <div class="row">
+        <div class="col">
+        <p class="text-capitalize h3 ml-4">{{pageTitle}}</p>
+        </div>
+    </div>
+
+    <div class="row bg-white mb-5 ml-4 mr-5">
+        <div class="col">
+            <p class="text-capitalize h5 ml-5 mt-5 mb-4 title_name">change payment info</p>
+        
+            <!-- seperator or line -->
+            <div class="line"></div>
+            <p class="ml-5 mt-5 mb-4 payment_text">To change your payment information, enter your new card number below.</p>
+    
+            <div class="col-xs-12 col-sm-12 col-lg-5 col-xl-5 col-md-5 m-4">
+                <form [formGroup]="paymentForm" novalidate>
+                    <div class="form-group">
+                        <label class="required text-capitalize">card number</label>
+                        <input type="text" class="form-control" appTrimInput appNumberOnly required formControlName="card_number" maxlength="20" autocomplete="off" placeholder="Card umber: Must be a number"/>
+                        <show-errors [control]="paymentForm.controls.card_number"></show-errors>
+                    </div>
+                    <div class="form-group">
+                        <label class="required text-capitalize">expiry date</label>
+                        <my-date-picker formControlName="expiry_date" [options]="myDatePickerOptions" [placeholder]="placeholder" ></my-date-picker>
+                        <show-errors [control]="paymentForm.controls.expiry_date"></show-errors>
+                    </div>
+                    <div class="form-group mb-5">
+                        <label class="required text-uppercase">cvv</label>
+                        <input type="text" class="form-control" appTrimInput required appNumberOnly formControlName="cvv" maxlength="4" autocomplete="off" placeholder="Card umber: Must be a number"/>
+                        <show-errors [control]="paymentForm.controls.cvv"></show-errors>
+                    </div>
+                    <small><span class="required"></span> indicates required</small>
+                    <div class="text-left mt-2">
+                        <button [disabled]="!paymentForm.valid" class="btn btn-shokuni text-capitalize mr-3" (click)="submitpaymentForm(paymentForm)">save</button>
+                        <button type="reset" class="btn btn-transparent text-capitalize" data-toggle="modal">cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+  </div>  
+
+  </div>
