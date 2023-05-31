@@ -120,7 +120,7 @@ export class ServicesComponent implements OnInit {
     this.editServiceForm.controls['name'].setValue (service['name']);
     this.editServiceForm.controls['service_type'].setValue (service['service_type']);
     this.editServiceForm.controls['time'].setValue (service['time']);
-    this.editServiceForm.controls['amount'].setValue (service['amount']);
+    this.editServiceForm.controls['amount'].setValue (service['amount'].toFixed(2));
   }
 
   /**
