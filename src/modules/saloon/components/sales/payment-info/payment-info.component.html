@@ -34,7 +34,7 @@
           <input type="text" class="form-control no-side-border" appTrimInput required formControlName="stripe_secret" maxlength="255" autocomplete="off">
           <show-errors [control]="paymentInfoForm.controls.stripe_secret"></show-errors>
         </div>
-        <button [disabled]="!paymentInfoForm.valid" (click)="saveStripeAccount (paymentInfoForm)">Save</button>
+        <button type="button" class="btn btn-shokuni text-capitalize" [disabled]="!paymentInfoForm.valid" (click)="saveStripeAccount (paymentInfoForm)">Save</button>
       </form>
       </div>
         

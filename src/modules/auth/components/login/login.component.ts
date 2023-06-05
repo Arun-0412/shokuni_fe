@@ -52,13 +52,18 @@ export class LoginComponent implements OnInit {
     // call for login
     this.auth.loginUser(form.value).subscribe((res) => {
       // save login 
-      
-      this.auth.saveLoginInfo(res.data.access_token, res.data.token_type);
-      // hide loader
-      this.auth.vars.displayLoader(false);
-
-      // get user detail
-      this.getUserDetail();
+      if(res.status == true){
+        this.auth.saveLoginInfo(res.data.access_token, res.data.token_type);
+        // hide loader
+        this.auth.vars.displayLoader(false);
+  
+        // get user detail
+        this.getUserDetail();
+      }else {
+        this.auth.vars.displayLoader(false);
+        this.auth.vars.showNotification(this.auth.vars.convertObjectToString(res.message), res.message);
+      }
+     
     }, (err) => {
       // hide loader
       this.auth.vars.displayLoader(false);
@@ -77,7 +82,7 @@ export class LoginComponent implements OnInit {
     this.user.getUserDetail().subscribe(res => {
 
       localStorage.setItem('user_detail', JSON.stringify(res.data))
-
+      console.log(res.data);
       // hide loader
       this.auth.vars.displayLoader(false);
 
