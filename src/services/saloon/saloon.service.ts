@@ -116,7 +116,7 @@ export class SaloonService {
   }
 
   getUserStripeDetails (barberId:number):Observable<any> {
-    let url = 'http://3.82.35.52/v2/getstripeid/' + barberId;
+    let url = 'http://localhost:8080/v2/getstripeid/' + barberId;
     let headers = new HttpHeaders ({Authorization: this.vars.getAuthToken() });
 
     // request to update card detail
@@ -151,7 +151,7 @@ export class SaloonService {
   //stripe
 
   saveStripeAccount (values, barberId:number):Observable <any> {
-    let url = 'http://3.82.35.52/v2/storeStripeKeys';
+    let url = 'http://localhost:8080/v2/storeStripeKeys';
       let params: any = {
         "userid": barberId,
         "accountid":values.stripeCode,
@@ -168,7 +168,7 @@ export class SaloonService {
   }
 
   getStripeURL (barberId:number):Observable <any> {
-    let url = 'http://3.82.35.52/v2/createStripeAccount'
+    let url = 'http://localhost:8080/v2/createStripeAccount'
     let params: any = {
       "userid":barberId
 
@@ -182,7 +182,7 @@ export class SaloonService {
   }
 
   getStripeAccountDetails (stripeId:string):Observable <any> {
-    let url = 'http://3.82.35.52/v2/getStripeAccount/'+ stripeId
+    let url = 'http://localhost:8080/v2/getStripeAccount/'+ stripeId
     let headers = new HttpHeaders ({Authorization: this.vars.getAuthToken() });
 
     return this._http.get (url, {headers:headers}).pipe (
@@ -192,7 +192,7 @@ export class SaloonService {
   }
   
   getStripeStatus (stripeId:string):Observable <any> {
-    let url = 'http://3.82.35.52/v2/getStripeAccountLink/'+ stripeId
+    let url = 'http://localhost:8080/v2/getStripeAccountLink/'+ stripeId
     let headers = new HttpHeaders ({Authorization: this.vars.getAuthToken() });
 
     return this._http.get (url, {headers:headers}).pipe (

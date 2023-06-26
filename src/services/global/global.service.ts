@@ -16,7 +16,7 @@ export class GlobalService {
   public project_sub_title:String = "barber shop";
 
   // public user_role:String = "consumer";
-  public backend_url:String = "http://3.82.35.52/v2";
+  public backend_url:String = "http://localhost:8080/v2";
   //public backend_url:String = "http://103.250.84.164/shokuni_new/public/v2";/*http://10.10.10.145*/
 
   public client_id:number = 2;

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Incomplete</title>
+</head>
+<style>
+body {
+  min-height: 100vh !important;
+  width: 100%;
+}
+  img {
+    height:80px;
+    width:80px;
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  }
+  .logo {
+    padding: 30px;
+    font-weight: 800;
+    font-size: 50px;
+  }
+</style>
+<body>
+  <h1 class="logo">Shokuni</h1>
+    <img src="../../../../assets/images/pending-clock-icon.svg" alt="pending"> <br><br>
+    <h1 class="text-center text-warning">Payment Incomplete</h1> <br> <br>
+    <h4 class="text-center text-secondary">kindly go back and complete payment</h4> <br> <br>
+    <button type="button" class="btn btn-outline-success btn-lg btn-block" style="width:15%;margin: 0px auto;" onclick="history.back()">Go to Payment</button> <br> <br>
+    <h3 class="text-center">Thank you!</h3>    
+</body>
+</html>

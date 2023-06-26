@@ -19,6 +19,8 @@ import { InviteBarberComponent } from 'src/modules/admin/components/invite-barbe
 import { NotAuthGuard } from 'src/guards/not-auth/not-auth.guard';
 import { AuthGuard } from 'src/guards/auth/auth.guard';
 import { LoginComponent } from 'src/modules/auth/components/login/login.component';
+import { SuccessComponent } from 'src/modules/auth/components/success/success.component';
+import { CancelComponent } from 'src/modules/auth/components/cancel/cancel.component';
 
 @NgModule({
   declarations: [
@@ -40,10 +42,20 @@ import { LoginComponent } from 'src/modules/auth/components/login/login.componen
       path: 'invite/:inviteId',
       component: InviteBarberComponent,
       canActivate: [NotAuthGuard]
-    }, {
+    },
+     {
       path: '**',
       redirectTo: 'login',
-    }]),
+    },
+    {
+      path: 'success',
+      redirectTo: 'success',
+    },
+    {
+      path: 'cancel',
+      redirectTo: 'cancel',
+    }
+  ]),
     SnotifyModule
   ],
   providers: [

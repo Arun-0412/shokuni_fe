@@ -103,10 +103,14 @@ export class ServicesComponent implements OnInit {
 
     this.service.addService (form.value, this.activeRoute.snapshot.params["saloonId"] || null).subscribe (res => {
       this.service.vars.displayLoader (false);
-      this.service.vars.showNotification (this.service.vars.convertObjectToString (res.data), res.message, 'success');
-
+      if(res.status === true){
+        this.service.vars.showNotification (res.message, "Success", 'success');
+        this.getSaloonServices();
+      }
+      else {
+        this.service.vars.showNotification (res.message, "Failed");
+      }
       // request to load the services again
-      this.getSaloonServices();
     }, err => {
       this.service.vars.displayLoader (false);
       this.service.vars.showNotification (this.service.vars.convertObjectToString (err.errors), err.message);
@@ -120,7 +124,7 @@ export class ServicesComponent implements OnInit {
     this.editServiceForm.controls['name'].setValue (service['name']);
     this.editServiceForm.controls['service_type'].setValue (service['service_type']);
     this.editServiceForm.controls['time'].setValue (service['time']);
-    this.editServiceForm.controls['amount'].setValue (service['amount'].toFixed(2));
+    this.editServiceForm.controls['amount'].setValue (service['amount']);
   }
 
   /**
@@ -139,13 +143,16 @@ export class ServicesComponent implements OnInit {
 
     this.service.editService (form.value, this.selectedService['id']).subscribe (res => {
       this.service.vars.displayLoader (false);
-      this.service.vars.showNotification (this.service.vars.convertObjectToString (res.data), res.message, 'success');
-
-      // request to load the services again
-      this.getSaloonServices();
+      if(res.status === true){
+        this.service.vars.showNotification (res.message, "Success", 'success');
+        this.getSaloonServices();
+      }
+      else if(res.status === false){
+        this.service.vars.showNotification (res.message, "Failed");
+      }
     }, err => {
       this.service.vars.displayLoader (false);
-      this.service.vars.showNotification (this.service.vars.convertObjectToString (err.errors), err.message);
+      this.service.vars.showNotification (err.message,this.service.vars.convertObjectToString (err.errors));
     })
   }
 }
