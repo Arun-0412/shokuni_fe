@@ -348,10 +348,20 @@ var AppModule = /** @class */ (function () {
                         path: 'invite/:inviteId',
                         component: src_modules_admin_components_invite_barber_invite_barber_component__WEBPACK_IMPORTED_MODULE_11__["InviteBarberComponent"],
                         canActivate: [src_guards_not_auth_not_auth_guard__WEBPACK_IMPORTED_MODULE_12__["NotAuthGuard"]]
-                    }, {
+                    },
+                    {
                         path: '**',
                         redirectTo: 'login',
-                    }]),
+                    },
+                    {
+                        path: 'success',
+                        redirectTo: 'success',
+                    },
+                    {
+                        path: 'cancel',
+                        redirectTo: 'cancel',
+                    }
+                ]),
                 ng_snotify__WEBPACK_IMPORTED_MODULE_10__["SnotifyModule"]
             ],
             providers: [
@@ -1365,7 +1375,7 @@ module.exports = ".sub_title{\n    color:#565962;\n    font-size:14px;\n    font
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n  <!-- display page title -->\n  <!-- <div class=\"row\">\n    <div class=\"col\">\n      <p class=\"text-capitalize h3 ml-4\">{{pageTitle}}</p>\n    </div>\n  </div> -->\n\n\n  <div class=\"row bg-white mb-5 ml-4 mr-5\">\n    <div class=\"col-md-12\">\n      <p class=\"text-capitalize h5 ml-5 mt-5 mb-4 sub_title\">{{subTitle}}</p>\n      <!-- seperator or line -->\n      <div class=\"line ml-5 mr-5\"></div>\n      <!-- change-password form -->\n      <form class=\"row ml-4 mr-4 mb-5 mt-5\" [formGroup]=\"saloonForm\" novalidate>\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Saloon Name</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"name\"\n              maxlength=\"20\" autocomplete=\"off\">\n            <show-errors [control]=\"saloonForm.controls.name\"></show-errors>\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Standard Price</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required\n              formControlName=\"standard_price\" maxlength=\"20\" autocomplete=\"off\">\n            <show-errors [control]=\"saloonForm.controls.standard_price\"></show-errors>\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Postal Code</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"postal_code\"\n              maxlength=\"8\" autocomplete=\"off\">\n            <show-errors [control]=\"saloonForm.controls.postal_code\"></show-errors>\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Latitude</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"lat\"\n              maxlength=\"20\" autocomplete=\"off\">\n            <show-errors [control]=\"saloonForm.controls.lat\"></show-errors>\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Longitude</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"lng\"\n              maxlength=\"20\" autocomplete=\"off\">\n            <show-errors [control]=\"saloonForm.controls.lng\"></show-errors>\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6\">Vat Number</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput formControlName=\"vat_number\"\n              maxlength=\"20\" autocomplete=\"off\">\n            <!-- <show-errors [control]=\"saloonForm.controls.vat_number\"></show-errors> -->\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6\">Company Number</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput formControlName=\"company_number\"\n              maxlength=\"20\" autocomplete=\"off\">\n            <show-errors [control]=\"saloonForm.controls.company_number\"></show-errors>\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required text-capitalize\">Country</label>\n            <select class=\"form-control\" *ngIf=\"countries\" formControlName=\"country_id\"\n              (change)=\"updateCountry($event.target)\">\n              <option *ngFor=\"let country of countries.data\" [value]=\"country.id\" class=\"text-capitalize\">\n                {{country.name}}</option>\n            </select>\n            <show-errors [control]=\"saloonForm.controls.country_id\"></show-errors>\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Logo Image</label>\n            <input type=\"file\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"logo_url\"\n              accept=\"image/*\" (change)=\"logoUpload($event)\">\n            <show-errors [control]=\"saloonForm.controls.logo_url\"></show-errors>\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Header Image</label>\n            <input type=\"file\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"header_url\"\n              accept=\"image/*\" (change)=\"logoheaderUpload($event)\">\n            <show-errors [control]=\"saloonForm.controls.header_url\"></show-errors>\n          </div>\n        </div>\n\n        <!-- <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Barber First Name</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"first_name\"\n              maxlength=\"20\" autocomplete=\"off\">\n            <show-errors [control]=\"saloonForm.controls.first_name\"></show-errors>\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Barber Last Name</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"last_name\"\n              maxlength=\"20\" autocomplete=\"off\">\n            <show-errors [control]=\"saloonForm.controls.last_name\"></show-errors>\n          </div>\n        </div> -->\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Contact Number</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required\n              formControlName=\"contact_number\" maxlength=\"20\" autocomplete=\"off\">\n            <show-errors [control]=\"saloonForm.controls.contact_number\"></show-errors>\n          </div>\n        </div>\n\n        <!-- <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Email</label>\n            <input type=\"email\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"email\"\n              maxlength=\"50\" autocomplete=\"off\" readonly>\n            <show-errors [control]=\"saloonForm.controls.email\"></show-errors>\n          </div>\n        </div> -->\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group mb-5\">\n            <label class=\"h6 required\">Address</label>\n            <textarea class=\"form-control no-side-border\" appTrimInput required formControlName=\"address\"\n              autocomplete=\"off\"></textarea>\n            <show-errors [control]=\"saloonForm.controls.address\"></show-errors>\n          </div>\n        </div>\n\n\n\n\n        <div class=\"col-md-12\">\n          <small><span class=\"required\"></span> indicates required</small>\n          <div class=\"text-left mt-2\">\n            <button [disabled]=\"!saloonForm.valid\" (click)=\"submitAddSaloon (saloonForm)\"\n              class=\"btn btn-shokuni text-capitalize mr-3\">save</button>\n            <button type=\"reset\" (click)=\"redirect()\" class=\"btn btn-transparent text-capitalize\">cancel</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"container-fluid\">\n  <!-- display page title -->\n  <!-- <div class=\"row\">\n    <div class=\"col\">\n      <p class=\"text-capitalize h3 ml-4\">{{pageTitle}}</p>\n    </div>\n  </div> -->\n\n\n  <div class=\"row bg-white mb-5 ml-4 mr-5\">\n    <div class=\"col-md-12\">\n      <p class=\"text-capitalize h5 ml-5 mt-5 mb-4 sub_title\">{{subTitle}}</p>\n      <!-- seperator or line -->\n      <div class=\"line ml-5 mr-5\"></div>\n      <!-- change-password form -->\n      <form class=\"row ml-4 mr-4 mb-5 mt-5\" [formGroup]=\"saloonForm\" novalidate>\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Saloon Name</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"name\"\n              maxlength=\"20\" autocomplete=\"off\">\n            <show-errors [control]=\"saloonForm.controls.name\"></show-errors>\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Standard Price</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required\n              formControlName=\"standard_price\" maxlength=\"20\" autocomplete=\"off\">\n            <show-errors [control]=\"saloonForm.controls.standard_price\"></show-errors>\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Postal Code</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"postal_code\"\n              maxlength=\"8\" autocomplete=\"off\">\n            <show-errors [control]=\"saloonForm.controls.postal_code\"></show-errors>\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Latitude</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"lat\"\n              maxlength=\"20\" autocomplete=\"off\">\n            <show-errors [control]=\"saloonForm.controls.lat\"></show-errors>\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Longitude</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"lng\"\n              maxlength=\"20\" autocomplete=\"off\">\n            <show-errors [control]=\"saloonForm.controls.lng\"></show-errors>\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6\">Vat Number</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput formControlName=\"vat_number\"\n              maxlength=\"20\" autocomplete=\"off\">\n            <show-errors [control]=\"saloonForm.controls.vat_number\"></show-errors>\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6\">Company Number</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput formControlName=\"company_number\"\n              maxlength=\"20\" autocomplete=\"off\">\n            <show-errors [control]=\"saloonForm.controls.company_number\"></show-errors>\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required text-capitalize\">Country</label>\n            <select class=\"form-control\" *ngIf=\"countries\" formControlName=\"country_id\"\n              (change)=\"updateCountry($event.target)\">\n              <option *ngFor=\"let country of countries.data\" [value]=\"country.id\" class=\"text-capitalize\">\n                {{country.name}}</option>\n            </select>\n            <show-errors [control]=\"saloonForm.controls.country_id\"></show-errors>\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Logo Image</label>\n            <input type=\"file\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"logo_url\"\n              accept=\"image/*\" (change)=\"logoUpload($event)\">\n            <show-errors [control]=\"saloonForm.controls.logo_url\"></show-errors>\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Header Image</label>\n            <input type=\"file\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"header_url\"\n              accept=\"image/*\" (change)=\"logoheaderUpload($event)\">\n            <show-errors [control]=\"saloonForm.controls.header_url\"></show-errors>\n          </div>\n        </div>\n\n        <!-- <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Barber First Name</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"first_name\"\n              maxlength=\"20\" autocomplete=\"off\">\n            <show-errors [control]=\"saloonForm.controls.first_name\"></show-errors>\n          </div>\n        </div>\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Barber Last Name</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"last_name\"\n              maxlength=\"20\" autocomplete=\"off\">\n            <show-errors [control]=\"saloonForm.controls.last_name\"></show-errors>\n          </div>\n        </div> -->\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Contact Number</label>\n            <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required\n              formControlName=\"contact_number\" maxlength=\"20\" autocomplete=\"off\">\n            <show-errors [control]=\"saloonForm.controls.contact_number\"></show-errors>\n          </div>\n        </div>\n\n        <!-- <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label class=\"h6 required\">Email</label>\n            <input type=\"email\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"email\"\n              maxlength=\"50\" autocomplete=\"off\" readonly>\n            <show-errors [control]=\"saloonForm.controls.email\"></show-errors>\n          </div>\n        </div> -->\n\n        <div class=\"col-md-6\">\n          <div class=\"form-group mb-5\">\n            <label class=\"h6 required\">Address</label>\n            <textarea class=\"form-control no-side-border\" appTrimInput required formControlName=\"address\"\n              autocomplete=\"off\"></textarea>\n            <show-errors [control]=\"saloonForm.controls.address\"></show-errors>\n          </div>\n        </div>\n\n\n\n\n        <div class=\"col-md-12\">\n          <small><span class=\"required\"></span> indicates required</small>\n          <div class=\"text-left mt-2\">\n            <button [disabled]=\"!saloonForm.valid\" (click)=\"submitAddSaloon (saloonForm)\"\n              class=\"btn btn-shokuni text-capitalize mr-3\">Save</button>\n            <button type=\"reset\" (click)=\"redirect()\" class=\"btn btn-transparent text-capitalize\">cancel</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1427,7 +1437,7 @@ var AddSaloonsComponent = /** @class */ (function () {
             postal_code: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](null, [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]),
             lat: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](null, [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]),
             lng: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](null, [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]),
-            vat_number: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](null),
+            vat_number: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](null, [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]),
             company_number: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](null),
             address: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](null, [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]),
             country_id: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](null, [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]),
@@ -3474,6 +3484,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/signup/signup.component */ "./src/modules/auth/components/signup/signup.component.ts");
 /* harmony import */ var _guards_not_auth_not_auth_guard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../guards/not-auth/not-auth.guard */ "./src/guards/not-auth/not-auth.guard.ts");
 /* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../shared/shared.module */ "./src/modules/shared/shared.module.ts");
+/* harmony import */ var _components_success_success_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/success/success.component */ "./src/modules/auth/components/success/success.component.ts");
+/* harmony import */ var _components_cancel_cancel_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/cancel/cancel.component */ "./src/modules/auth/components/cancel/cancel.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3492,6 +3504,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 // Import all custome directives and components use for each module
 
+
+
 var routes = [{
         path: 'login',
         component: _components_login_login_component__WEBPACK_IMPORTED_MODULE_4__["LoginComponent"],
@@ -3499,6 +3513,12 @@ var routes = [{
         path: 'forgot-password',
         component: _components_forgot_password_forgot_password_component__WEBPACK_IMPORTED_MODULE_5__["ForgotPasswordComponent"],
         canActivate: [_guards_not_auth_not_auth_guard__WEBPACK_IMPORTED_MODULE_7__["NotAuthGuard"]]
+    }, {
+        path: 'success',
+        component: _components_success_success_component__WEBPACK_IMPORTED_MODULE_9__["SuccessComponent"],
+    }, {
+        path: 'cancel',
+        component: _components_cancel_cancel_component__WEBPACK_IMPORTED_MODULE_10__["CancelComponent"],
     }, {
         path: 'signup',
         component: _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_6__["SignupComponent"],
@@ -3518,7 +3538,7 @@ var AuthModule = /** @class */ (function () {
             declarations: [
                 _components_login_login_component__WEBPACK_IMPORTED_MODULE_4__["LoginComponent"],
                 _components_forgot_password_forgot_password_component__WEBPACK_IMPORTED_MODULE_5__["ForgotPasswordComponent"],
-                _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_6__["SignupComponent"],
+                _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_6__["SignupComponent"], _components_success_success_component__WEBPACK_IMPORTED_MODULE_9__["SuccessComponent"], _components_cancel_cancel_component__WEBPACK_IMPORTED_MODULE_10__["CancelComponent"],
             ],
             exports: [
                 _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"],
@@ -3526,6 +3546,69 @@ var AuthModule = /** @class */ (function () {
         })
     ], AuthModule);
     return AuthModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/modules/auth/components/cancel/cancel.component.css":
+/*!*****************************************************************!*\
+  !*** ./src/modules/auth/components/cancel/cancel.component.css ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/modules/auth/components/cancel/cancel.component.html":
+/*!******************************************************************!*\
+  !*** ./src/modules/auth/components/cancel/cancel.component.html ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Payment Incomplete</title>\n</head>\n<style>\nbody {\n  min-height: 100vh !important;\n  width: 100%;\n}\n  img {\n    height:80px;\n    width:80px;\n    display: block;\n  margin-left: auto;\n  margin-right: auto;\n  }\n  .logo {\n    padding: 30px;\n    font-weight: 800;\n    font-size: 50px;\n  }\n</style>\n<body>\n  <h1 class=\"logo\">Shokuni</h1>\n    <img src=\"../../../../assets/images/pending-clock-icon.svg\" alt=\"pending\"> <br><br>\n    <h1 class=\"text-center text-warning\">Payment Incomplete</h1> <br> <br>\n    <h4 class=\"text-center text-secondary\">kindly go back and complete payment</h4> <br> <br>\n    <button type=\"button\" class=\"btn btn-outline-success btn-lg btn-block\" style=\"width:max-content;margin: 0px auto;\" onclick=\"history.back()\">Get back to Payment</button> <br> <br>\n    <h3 class=\"text-center\">Thank you!</h3>    \n</body>\n</html>"
+
+/***/ }),
+
+/***/ "./src/modules/auth/components/cancel/cancel.component.ts":
+/*!****************************************************************!*\
+  !*** ./src/modules/auth/components/cancel/cancel.component.ts ***!
+  \****************************************************************/
+/*! exports provided: CancelComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CancelComponent", function() { return CancelComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var CancelComponent = /** @class */ (function () {
+    function CancelComponent() {
+    }
+    CancelComponent.prototype.ngOnInit = function () {
+    };
+    CancelComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-cancel',
+            template: __webpack_require__(/*! ./cancel.component.html */ "./src/modules/auth/components/cancel/cancel.component.html"),
+            styles: [__webpack_require__(/*! ./cancel.component.css */ "./src/modules/auth/components/cancel/cancel.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], CancelComponent);
+    return CancelComponent;
 }());
 
 
@@ -3708,11 +3791,17 @@ var LoginComponent = /** @class */ (function () {
         // call for login
         this.auth.loginUser(form.value).subscribe(function (res) {
             // save login 
-            _this.auth.saveLoginInfo(res.data.access_token, res.data.token_type);
-            // hide loader
-            _this.auth.vars.displayLoader(false);
-            // get user detail
-            _this.getUserDetail();
+            if (res.status == true) {
+                _this.auth.saveLoginInfo(res.data.access_token, res.data.token_type);
+                // hide loader
+                _this.auth.vars.displayLoader(false);
+                // get user detail
+                _this.getUserDetail();
+            }
+            else {
+                _this.auth.vars.displayLoader(false);
+                _this.auth.vars.showNotification(_this.auth.vars.convertObjectToString(res.message), res.message);
+            }
         }, function (err) {
             // hide loader
             _this.auth.vars.displayLoader(false);
@@ -3729,6 +3818,7 @@ var LoginComponent = /** @class */ (function () {
         this.auth.vars.displayLoader(true);
         this.user.getUserDetail().subscribe(function (res) {
             localStorage.setItem('user_detail', JSON.stringify(res.data));
+            console.log(res.data);
             // hide loader
             _this.auth.vars.displayLoader(false);
             _this.renderUser();
@@ -3872,6 +3962,65 @@ var SignupComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], SignupComponent);
     return SignupComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/modules/auth/components/success/success.component.css":
+/*!*******************************************************************!*\
+  !*** ./src/modules/auth/components/success/success.component.css ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/modules/auth/components/success/success.component.html":
+/*!********************************************************************!*\
+  !*** ./src/modules/auth/components/success/success.component.html ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Payment Successful</title>\n</head>\n<style>\nbody {\n  min-height: 100vh !important;\n  width: 100%;\n}\n  img {\n    height:80px;\n    width:80px;\n    display: block;\n  margin-left: auto;\n  margin-right: auto;\n  }\n  .logo {\n    padding: 30px;\n    font-weight: 800;\n    font-size: 50px;\n  }\n</style>\n<body>\n  <h1 class=\"logo\">Shokuni</h1>\n    <img src=\"../../../../assets/images/tick-mark-icon.svg\" alt=\"tick\"> <br><br>\n    <h1 class=\"text-center text-success\">Payment Successful</h1> <br> <br>\n    <h3 class=\"text-center\">Thank you!</h3>    \n</body>\n</html>"
+
+/***/ }),
+
+/***/ "./src/modules/auth/components/success/success.component.ts":
+/*!******************************************************************!*\
+  !*** ./src/modules/auth/components/success/success.component.ts ***!
+  \******************************************************************/
+/*! exports provided: SuccessComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SuccessComponent", function() { return SuccessComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var SuccessComponent = /** @class */ (function () {
+    function SuccessComponent() {
+    }
+    SuccessComponent.prototype.ngOnInit = function () {
+    };
+    SuccessComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-success',
+            template: __webpack_require__(/*! ./success.component.html */ "./src/modules/auth/components/success/success.component.html"),
+            styles: [__webpack_require__(/*! ./success.component.css */ "./src/modules/auth/components/success/success.component.css")]
+        })
+    ], SuccessComponent);
+    return SuccessComponent;
 }());
 
 
@@ -5234,7 +5383,7 @@ module.exports = "p {\n  color: #575a63;\n  font-size: 11px;\n  font-weight: bol
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- display payment-info change screen -->\n<div class=\"row ml-4 pb-5 mr-4\">\n  <div class=\"col bg-white\">\n    <div class=\"col-12 pb-4\">\n    <p class=\"text-capitalize mt-4 mb-4\">{{pageTitle}}</p>\n    <div class=\"line\"></div>\n    </div>\n    <div *ngIf=\"stripeId\" class=\"col-5 pb-4\">\n    <p class=\"text-capitalize mt-4 mb-4\">Account Id</p>\n    <p style=\"color: #c7c7cf;font-size: 11px;font-weight: bold;\">{{stripeId}}</p>\n  </div>\n    <div *ngIf=\"stripeId\"  class=\"line\"></div>\n    <div class=\"col-5 pb-4\" *ngIf=\"stripeErrorMessage\">\n      <p class=\"mt-4 p_text\">{{stripeErrorMessage}}</p>\n      <button (click)=\"newStripeAccount()\">Stripe Link</button>\n    </div>\n    <div *ngIf=\"stripeId\" class=\"line\"></div>\n    <div class=\"col-5 pb-4\" *ngIf=\"stripeSuccesMessage\" >\n      <p class=\"text-capitalize mt-4 mb-4\">Status</p>\n      <p style=\"color: #c7c7cf;font-size: 11px;font-weight: bold;\">{{stripeSuccesMessage}}</p>\n    </div>\n    <div *ngIf=\"stripeId\" class=\"line\"></div>\n    <div class=\"col-5 pb-4\">\n      <p class=\"text-capitalize mt-4 mb-4\">Provide your keys</p>\n      <form [formGroup]=\"paymentInfoForm\" novalidate>\n        <div class=\"form-group\">\n          <label class=\"h6 required text-capitalize\">stripe key</label>\n          <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"stripe_key\" maxlength=\"255\" autocomplete=\"off\">\n          <show-errors [control]=\"paymentInfoForm.controls.stripe_key\"></show-errors>\n        </div>\n\n        <div class=\"form-group\">\n          <label class=\"h6 required text-capitalize\">stripe secret</label>\n          <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"stripe_secret\" maxlength=\"255\" autocomplete=\"off\">\n          <show-errors [control]=\"paymentInfoForm.controls.stripe_secret\"></show-errors>\n        </div>\n        <button [disabled]=\"!paymentInfoForm.valid\" (click)=\"saveStripeAccount (paymentInfoForm)\">Save</button>\n      </form>\n      </div>\n        \n  \n    <!-- seperator or line -->\n    <!-- <div class=\"line\"></div> -->\n    <div class=\"col-5 pb-4\" *ngIf=\"!stripeId\">\n    <p class=\"mt-4 p_text\">To connect payment account with shokuni</p>\n      <button (click)=\"submitPaymentURL()\">Click here</button>\n    </div>\n    <!-- <div *ngIf=\"stripeAccount\">\n      <form [formGroup]=\"paymentInfoForm\" novalidate>\n        <label class=\"h6 required text-capitalize\">Enter stripe Id</label>\n        <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"stripeCode\" maxlength=\"255\" autocomplete=\"off\">\n        <show-errors [control]=\"paymentInfoForm.controls.stripeCode\"></show-errors>\n        <button [disabled]=\"!paymentInfoForm.valid\" (click)=\"saveStripeAccount (paymentInfoForm)\">Save</button>\n      </form>\n    </div> -->\n  <!-- <div *ngIf=\"cancelBtn\">\n    <button (click)=\"stripeCancel()\" style=\"background-color: red;color: white;\">Cancel</button> \n  </div> -->\n  \n    <!-- <div class=\"col-5 pb-4\"> -->\n      <!-- design payment information HTML code -->\n      <!-- <form [formGroup]=\"paymentInfoForm\" novalidate>\n        <div class=\"form-group\">\n          <label class=\"h6 required text-capitalize\">account number</label>\n          <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"account_number\" maxlength=\"255\" autocomplete=\"off\">\n          <show-errors [control]=\"paymentInfoForm.controls.account_number\"></show-errors>\n        </div>\n\n        <div class=\"form-group\">\n          <label class=\"h6 required text-capitalize\">enter short code</label>\n          <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"code\" maxlength=\"255\" autocomplete=\"off\">\n          <show-errors [control]=\"paymentInfoForm.controls.code\"></show-errors>\n        </div>\n\n        <div class=\"form-group\">\n          <label class=\"h6 required text-capitalize\">name on account</label>\n          <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"name_on_account\" maxlength=\"255\" autocomplete=\"off\">\n          <show-errors [control]=\"paymentInfoForm.controls.name_on_account\"></show-errors>\n        </div> -->\n\n        <!-- seperator or line -->\n        <!-- <div class=\"line mt-4 mb-4\"></div>\n\n        <small><span class=\"required\"></span> indicates required</small>\n        <div class=\"text-left mt-2\">\n          <button [disabled]=\"!paymentInfoForm.valid\" (click)=\"submitPaymentInfoForm (paymentInfoForm)\" class=\"btn btn-shokuni text-capitalize mr-3\">save</button>\n          <button type=\"reset\" class=\"btn btn-transparent text-capitalize\">cancel</button>\n        </div>\n      </form>\n    </div> -->\n  </div>\n</div>"
+module.exports = "<!-- display payment-info change screen -->\n<div class=\"row ml-4 pb-5 mr-4\">\n  <div class=\"col bg-white\">\n    <div class=\"col-12 pb-4\">\n    <p class=\"text-capitalize mt-4 mb-4\">{{pageTitle}}</p>\n    <div class=\"line\"></div>\n    </div>\n    <div *ngIf=\"stripeId\" class=\"col-5 pb-4\">\n    <p class=\"text-capitalize mt-4 mb-4\">Account Id</p>\n    <p style=\"color: #c7c7cf;font-size: 11px;font-weight: bold;\">{{stripeId}}</p>\n  </div>\n    <div *ngIf=\"stripeId\"  class=\"line\"></div>\n    <div class=\"col-5 pb-4\" *ngIf=\"stripeErrorMessage\">\n      <p class=\"mt-4 p_text\">{{stripeErrorMessage}}</p>\n      <button (click)=\"newStripeAccount()\">Stripe Link</button>\n    </div>\n    <div *ngIf=\"stripeId\" class=\"line\"></div>\n    <div class=\"col-5 pb-4\" *ngIf=\"stripeSuccesMessage\" >\n      <p class=\"text-capitalize mt-4 mb-4\">Status</p>\n      <p style=\"color: #c7c7cf;font-size: 11px;font-weight: bold;\">{{stripeSuccesMessage}}</p>\n    </div>\n    <div *ngIf=\"stripeId\" class=\"line\"></div>\n    <!-- <div class=\"col-5 pb-4\">\n      <p class=\"text-capitalize mt-4 mb-4\">Provide your keys</p>\n      <form [formGroup]=\"paymentInfoForm\" novalidate>\n        <div class=\"form-group\">\n          <label class=\"h6 required text-capitalize\">stripe key</label>\n          <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"stripe_key\" maxlength=\"255\" autocomplete=\"off\">\n          <show-errors [control]=\"paymentInfoForm.controls.stripe_key\"></show-errors>\n        </div>\n\n        <div class=\"form-group\">\n          <label class=\"h6 required text-capitalize\">stripe secret</label>\n          <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"stripe_secret\" maxlength=\"255\" autocomplete=\"off\">\n          <show-errors [control]=\"paymentInfoForm.controls.stripe_secret\"></show-errors>\n        </div>\n        <button type=\"button\" class=\"btn btn-shokuni text-capitalize\" [disabled]=\"!paymentInfoForm.valid\" (click)=\"saveStripeAccount (paymentInfoForm)\">Save</button>\n      </form>\n      </div> -->\n        \n  \n    <!-- seperator or line -->\n    <!-- <div class=\"line\"></div> -->\n    <div class=\"col-5 pb-4\" *ngIf=\"!stripeId\">\n    <p class=\"mt-4 p_text\">To connect payment account with shokuni</p>\n      <button (click)=\"submitPaymentURL()\">Click here</button>\n    </div>\n    <!-- <div *ngIf=\"stripeAccount\">\n      <form [formGroup]=\"paymentInfoForm\" novalidate>\n        <label class=\"h6 required text-capitalize\">Enter stripe Id</label>\n        <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"stripeCode\" maxlength=\"255\" autocomplete=\"off\">\n        <show-errors [control]=\"paymentInfoForm.controls.stripeCode\"></show-errors>\n        <button [disabled]=\"!paymentInfoForm.valid\" (click)=\"saveStripeAccount (paymentInfoForm)\">Save</button>\n      </form>\n    </div> -->\n  <!-- <div *ngIf=\"cancelBtn\">\n    <button (click)=\"stripeCancel()\" style=\"background-color: red;color: white;\">Cancel</button> \n  </div> -->\n  \n    <!-- <div class=\"col-5 pb-4\"> -->\n      <!-- design payment information HTML code -->\n      <!-- <form [formGroup]=\"paymentInfoForm\" novalidate>\n        <div class=\"form-group\">\n          <label class=\"h6 required text-capitalize\">account number</label>\n          <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"account_number\" maxlength=\"255\" autocomplete=\"off\">\n          <show-errors [control]=\"paymentInfoForm.controls.account_number\"></show-errors>\n        </div>\n\n        <div class=\"form-group\">\n          <label class=\"h6 required text-capitalize\">enter short code</label>\n          <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"code\" maxlength=\"255\" autocomplete=\"off\">\n          <show-errors [control]=\"paymentInfoForm.controls.code\"></show-errors>\n        </div>\n\n        <div class=\"form-group\">\n          <label class=\"h6 required text-capitalize\">name on account</label>\n          <input type=\"text\" class=\"form-control no-side-border\" appTrimInput required formControlName=\"name_on_account\" maxlength=\"255\" autocomplete=\"off\">\n          <show-errors [control]=\"paymentInfoForm.controls.name_on_account\"></show-errors>\n        </div> -->\n\n        <!-- seperator or line -->\n        <!-- <div class=\"line mt-4 mb-4\"></div>\n\n        <small><span class=\"required\"></span> indicates required</small>\n        <div class=\"text-left mt-2\">\n          <button [disabled]=\"!paymentInfoForm.valid\" (click)=\"submitPaymentInfoForm (paymentInfoForm)\" class=\"btn btn-shokuni text-capitalize mr-3\">save</button>\n          <button type=\"reset\" class=\"btn btn-transparent text-capitalize\">cancel</button>\n        </div>\n      </form>\n    </div> -->\n  </div>\n</div>"
 
 /***/ }),
 
@@ -6636,9 +6785,14 @@ var ServicesComponent = /** @class */ (function () {
         this.service.vars.displayLoader(true);
         this.service.addService(form.value, this.activeRoute.snapshot.params["saloonId"] || null).subscribe(function (res) {
             _this.service.vars.displayLoader(false);
-            _this.service.vars.showNotification(_this.service.vars.convertObjectToString(res.data), res.message, 'success');
+            if (res.status === true) {
+                _this.service.vars.showNotification(res.message, "Success", 'success');
+                _this.getSaloonServices();
+            }
+            else {
+                _this.service.vars.showNotification(res.message, "Failed");
+            }
             // request to load the services again
-            _this.getSaloonServices();
         }, function (err) {
             _this.service.vars.displayLoader(false);
             _this.service.vars.showNotification(_this.service.vars.convertObjectToString(err.errors), err.message);
@@ -6665,12 +6819,16 @@ var ServicesComponent = /** @class */ (function () {
         this.service.vars.displayLoader(true);
         this.service.editService(form.value, this.selectedService['id']).subscribe(function (res) {
             _this.service.vars.displayLoader(false);
-            _this.service.vars.showNotification(_this.service.vars.convertObjectToString(res.data), res.message, 'success');
-            // request to load the services again
-            _this.getSaloonServices();
+            if (res.status === true) {
+                _this.service.vars.showNotification(res.message, "Success", 'success');
+                _this.getSaloonServices();
+            }
+            else if (res.status === false) {
+                _this.service.vars.showNotification(res.message, "Failed");
+            }
         }, function (err) {
             _this.service.vars.displayLoader(false);
-            _this.service.vars.showNotification(_this.service.vars.convertObjectToString(err.errors), err.message);
+            _this.service.vars.showNotification(err.message, _this.service.vars.convertObjectToString(err.errors));
         });
     };
     ServicesComponent = __decorate([
@@ -6921,7 +7079,7 @@ module.exports = "/* Ends here */\n\n\n.dropicon {\n    float: right;\n    margi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n\n  <div class=\"sub-header\">\n    <div class=\"row\">\n      <div class=\"col-md-3 col-sm-3 col-xs-3\">\n        <h4 class=\"h4_tag\">Dashboard</h4>\n      </div>\n   \n      <div class=\"col-md-9 col-sm-9 col-xs-9\" style=\"margin-left: -1%;\">\n        <div class=\"d-flex flex-row justify-content-end\">\n          <div class=\"bg-white px-5 py-2\" *ngIf=\"displayAddSaloon\">\n            <h5>Do you want to add Saloon?</h5>\n            <a class=\"col text-right mt-3\" (click)=\"redirect()\">\n              <span class=\"btn text-capitalize btn-transpert\">Yes</span>\n            </a>\n          </div>&nbsp;&nbsp;&nbsp;\n          <div>\n            <p class=\"datetex\">Today: <span class=\"dd\">{{ selectedDate | date:'MMM dd' }}</span>\n              <my-date-picker class=\"dropicon\" [options]=\"myDatePickerOptions\" (dateChanged)=\"onDateChanged($event)\">\n              </my-date-picker>\n            </p>\n          </div>\n        </div>\n      </div> \n    </div>\n  </div>\n\n  <app-saloon-short-detail [saloonId]=\"saloonId\"></app-saloon-short-detail>\n\n  <div class=\"row shadow m-3 bg-white\">\n    <div class=\"col\">\n      <div class=\"row p-4\">\n        <div class=\"col\">\n          <p class=\"text-dark text-capitalize\">Total Takings</p>\n          <p class=\"text-black-50 text-capitalize\">All Customs Value</p>\n        </div>\n        <div class=\"col\">\n          <p class=\"text-danger font-weight-bold mt-3\">{{ barberPerformanceData?.total_collection | currency:'GBP' }}\n          </p>\n        </div>\n      </div>\n    </div>\n    <div class=\"col\">\n      <div class=\"row p-4\">\n        <div class=\"col\">\n          <p class=\"text-dark text-capitalize\">Cuts</p>\n          <p class=\"text-black-50 text-capitalize\">Total Number of Cuts</p>\n        </div>\n        <div class=\"col\">\n          <p class=\"text-danger font-weight-bold mt-3\">{{ barberPerformanceData?.total_cuts }}</p>\n        </div>\n      </div>\n    </div>\n    <div class=\"col\">\n      <div class=\"row p-4\">\n        <div class=\"col\">\n          <p class=\"text-dark text-capitalize\">Average Cut Time</p>\n          <p class=\"text-black-50 text-capitalize\">Time Spent On Cuts</p>\n        </div>\n        <div class=\"col\">\n          <p class=\"text-danger font-weight-bold mt-3\">{{ calculateAvgCutTime\n            (barberPerformanceData?.total_activity_time_in_sec,barberPerformanceData?.total_cuts) }}<sub>m</sub></p>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <!-- display forumn screen -->\n  <app-barber-join-discussion></app-barber-join-discussion>\n</div>"
+module.exports = "<div class=\"container-fluid\">\r\n\r\n  <div class=\"sub-header\">\r\n    <div class=\"row\">\r\n      <div class=\"col-md-3 col-sm-3 col-xs-3\">\r\n        <h4 class=\"h4_tag\">Dashboard</h4>\r\n      </div>\r\n   \r\n      <div class=\"col-md-9 col-sm-9 col-xs-9\" style=\"margin-left: -1%;\">\r\n        <div class=\"d-flex flex-row justify-content-end\">\r\n          <div class=\"bg-white px-5 py-2\" *ngIf=\"displayAddSaloon\">\r\n            <h5>Do you want to add Saloon?</h5>\r\n            <a class=\"col text-right mt-3\" (click)=\"redirect()\">\r\n              <span class=\"btn text-capitalize btn-transpert\">Yes</span>\r\n            </a>\r\n          </div>&nbsp;&nbsp;&nbsp;\r\n          <div>\r\n            <p class=\"datetex\">Today: <span class=\"dd\">{{ selectedDate | date:'MMM dd' }}</span>\r\n              <my-date-picker class=\"dropicon\" [options]=\"myDatePickerOptions\" (dateChanged)=\"onDateChanged($event)\">\r\n              </my-date-picker>\r\n            </p>\r\n          </div>\r\n        </div>\r\n      </div> \r\n    </div>\r\n  </div>\r\n\r\n  <app-saloon-short-detail [saloonId]=\"saloonId\"></app-saloon-short-detail>\r\n\r\n  <div class=\"row shadow m-3 bg-white\">\r\n    <div class=\"col\">\r\n      <div class=\"row p-4\">\r\n        <div class=\"col\">\r\n          <p class=\"text-dark text-capitalize\">Total Takings</p>\r\n          <p class=\"text-black-50 text-capitalize\">All Customs Value</p>\r\n        </div>\r\n        <div class=\"col\">\r\n          <p class=\"text-danger font-weight-bold mt-3\">{{ barberPerformanceData?.total_collection | currency:'GBP' }}\r\n          </p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col\">\r\n      <div class=\"row p-4\">\r\n        <div class=\"col\">\r\n          <p class=\"text-dark text-capitalize\">Cuts</p>\r\n          <p class=\"text-black-50 text-capitalize\">Total Number of Cuts</p>\r\n        </div>\r\n        <div class=\"col\">\r\n          <p class=\"text-danger font-weight-bold mt-3\">{{ barberPerformanceData?.total_cuts }}</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col\">\r\n      <div class=\"row p-4\">\r\n        <div class=\"col\">\r\n          <p class=\"text-dark text-capitalize\">Average Cut Time</p>\r\n          <p class=\"text-black-50 text-capitalize\">Time Spent On Cuts</p>\r\n        </div>\r\n        <div class=\"col\">\r\n          <p class=\"text-danger font-weight-bold mt-3\">{{ calculateAvgCutTime\r\n            (barberPerformanceData?.total_activity_time_in_sec,barberPerformanceData?.total_cuts) }}<sub>m</sub></p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <!-- display forumn screen -->\r\n  <app-barber-join-discussion></app-barber-join-discussion>\r\n</div>"
 
 /***/ }),
 
@@ -9021,7 +9179,7 @@ var GlobalService = /** @class */ (function () {
         this.project_title = "shokuni";
         this.project_sub_title = "barber shop";
         // public user_role:String = "consumer";
-        this.backend_url = "http://3.82.35.52/v2";
+        this.backend_url = "https://api.shokuni.co.uk/v2";
         //public backend_url:String = "http://103.250.84.164/shokuni_new/public/v2";/*http://10.10.10.145*/
         this.client_id = 2;
         this.client_secret = "FHboWXJfzSaM3Y8AH8aWht1XAZ9DqIIHhgt8dmeJ";
@@ -9563,7 +9721,7 @@ var SaloonService = /** @class */ (function () {
         return this._http.get(url, { headers: headers }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.vars.handleError));
     };
     SaloonService.prototype.getUserStripeDetails = function (barberId) {
-        var url = 'http://3.82.35.52/v2/getstripeid/' + barberId;
+        var url = 'https://api.shokuni.co.uk/v2/getstripeid/' + barberId;
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ Authorization: this.vars.getAuthToken() });
         // request to update card detail
         return this._http.get(url, { headers: headers }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.vars.handleError));
@@ -9586,7 +9744,7 @@ var SaloonService = /** @class */ (function () {
     };
     //stripe
     SaloonService.prototype.saveStripeAccount = function (values, barberId) {
-        var url = 'http://3.82.35.52/v2/storeStripeKeys';
+        var url = 'https://api.shokuni.co.uk/v2/storeStripeKeys';
         var params = {
             "userid": barberId,
             "accountid": values.stripeCode,
@@ -9599,7 +9757,7 @@ var SaloonService = /** @class */ (function () {
         return this._http.post(url, params, { headers: headers }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.vars.handleError));
     };
     SaloonService.prototype.getStripeURL = function (barberId) {
-        var url = 'http://3.82.35.52/v2/createStripeAccount';
+        var url = 'https://api.shokuni.co.uk/v2/createStripeAccount';
         var params = {
             "userid": barberId
         };
@@ -9607,12 +9765,12 @@ var SaloonService = /** @class */ (function () {
         return this._http.post(url, params, { headers: headers }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.vars.handleError));
     };
     SaloonService.prototype.getStripeAccountDetails = function (stripeId) {
-        var url = 'http://3.82.35.52/v2/getStripeAccount/' + stripeId;
+        var url = 'https://api.shokuni.co.uk/v2/getStripeAccount/' + stripeId;
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ Authorization: this.vars.getAuthToken() });
         return this._http.get(url, { headers: headers }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.vars.handleError));
     };
     SaloonService.prototype.getStripeStatus = function (stripeId) {
-        var url = 'http://3.82.35.52/v2/getStripeAccountLink/' + stripeId;
+        var url = 'https://api.shokuni.co.uk/v2/getStripeAccountLink/' + stripeId;
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ Authorization: this.vars.getAuthToken() });
         return this._http.get(url, { headers: headers }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.vars.handleError));
     };
@@ -10072,7 +10230,7 @@ var UserService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\angular\soukoni\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! D:\angular\Shokuni\src\main.ts */"./src/main.ts");
 
 
 /***/ })

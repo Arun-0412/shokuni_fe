@@ -580,8 +580,8 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\angular\soukoni\src\styles.css */"./src/styles.css");
-module.exports = __webpack_require__(/*! D:\angular\soukoni\node_modules\ng-snotify\styles\material.css */"./node_modules/ng-snotify/styles/material.css");
+__webpack_require__(/*! D:\angular\Shokuni\src\styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! D:\angular\Shokuni\node_modules\ng-snotify\styles\material.css */"./node_modules/ng-snotify/styles/material.css");
 
 
 /***/ })
